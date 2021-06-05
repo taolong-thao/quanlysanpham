@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/addSP}" th:object="${sanpham}" method="post">
+    <input type="hidden" th:field="*{maSp}">
+    <!--    <div class="form-group">-->
+    <!--        <label>Masp</label>-->
+    <!--        <input type="text" th:field="*{maSp}" class="form-control" placeholder="Masp">-->
+    <!--    </div>-->
+    <div class="form-group">
+        <label>TenSp</label>
+        <input type="text" th:field="*{tenSp}" class="form-control" placeholder="Masp">
+    </div>
+    <div class="form-group">
+        <label>quycach</label>
+        <input type="number" th:field="*{quyCach}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>giagoc</label>
+        <input type="number" th:field="*{giaGoc}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+</body>
+</html>

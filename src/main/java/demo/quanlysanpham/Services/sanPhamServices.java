@@ -1,6 +1,7 @@
 package demo.quanlysanpham.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,14 @@ public class sanPhamServices implements Services {
 
     @Override
     public SanPham find(String temp) {
-        return sanPhamRepo.findById(temp).get();
+        Optional<SanPham> optional = sanPhamRepo.findById(temp);
+        SanPham sanPham = null;
+        if (optional.isPresent()) {
+            sanPham = optional.get();
+        } else {
+            throw new RuntimeException("Khong tim thay masp : " + temp);
+        }
+        return sanPham;
     }
 
     @Override
