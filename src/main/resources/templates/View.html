@@ -14,13 +14,21 @@
         <th>TENSP</th>
         <th>QUYCACH</th>
         <th>GIAGOC</th>
+        <th>Delete</th>
+        <th>Edit</th>
     </tr>
     <tr th:each="sanpham:${sanpham}">
         <td th:text="${sanpham.maSp}"></td>
         <td th:text="${sanpham.tenSp}"></td>
         <td th:text="${sanpham.quyCach}"></td>
         <td th:text="${sanpham.giaGoc}"></td>
+        <td><a th:href="@{/delete?masp={masp}(masp=${sanpham.maSp})}">Delete</a>
+        </td>
+        <td>
+            <a th:href="@{/update/{masp}(masp=${sanpham.maSp})}">Edit</a>
+        </td>
     </tr>
+
     </tbody>
 </table>
 </body>
