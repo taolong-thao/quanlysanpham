@@ -59,4 +59,17 @@ public class HomeController {
         model.addAttribute("sanpham", sanPham);
         return "editSP";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(Model model) {
+        SanPham sanPham = new SanPham();
+        model.addAttribute("sanpham", sanPham);
+        return "search";
+    }
+
+    @PostMapping("/search")
+    public String searchsp(@RequestParam("maSp") String masp, Model model) {
+        model.addAttribute("sanpham", sanPhamServices.Search(masp));
+        return "search";
+    }
 }

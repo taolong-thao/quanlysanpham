@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/searchkh}" th:object="${khachhang}" method="post">
+    <input th:name="maKh" type="text">
+    <input type="submit" value="Search">
+</form>
+<table border="1">
+    <tbody>
+    <tr>
+        <th>MAKH</th>
+        <th>TENKH</th>
+        <th>DIACHI</th>
+        <th>SDT</th>
+        <th>SOTK</th>
+        <th>SODUTK</th>
+        <th>DELTE</th>
+        <th>EDIT</th>
+    </tr>
+    <tr th:each="khachhang:${khachhang}">
+        <td th:text="${khachhang.maKh}"></td>
+        <td th:text="${khachhang.tenKh}"></td>
+        <td th:text="${khachhang.diaChi}"></td>
+        <td th:text="${khachhang.SDT}"></td>
+        <td th:text="${khachhang.soTK}"></td>
+        <td th:text="${khachhang.soDuTK}"></td>
+        <td><a th:href="@{/deleteKh?makh={maKh}(maKh=${khachhang.maKh})}">Delete</a>
+        <td><a th:href="@{/UpdateKh/{maKh}(maKh=${khachhang.maKh})}">edit</a>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>

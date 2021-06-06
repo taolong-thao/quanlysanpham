@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/search}" th:object="${sanpham}" method="post">
+    <input th:name="maSp" type="text">
+    <input type="submit" value="Search">
+</form>
+<table border="1">
+    <tbody>
+    <tr>
+        <th>MASP</th>
+        <th>TENSP</th>
+        <th>QUYCACH</th>
+        <th>GIAGOC</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="sanpham:${sanpham}">
+        <td th:text="${sanpham.maSp}"></td>
+        <td th:text="${sanpham.tenSp}"></td>
+        <td th:text="${sanpham.quyCach}"></td>
+        <td th:text="${sanpham.giaGoc}"></td>
+        <td><a th:href="@{/delete?masp={masp}(masp=${sanpham.maSp})}">Delete</a>
+        </td>
+        <td>
+            <a th:href="@{/update/{masp}(masp=${sanpham.maSp})}">Edit</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>

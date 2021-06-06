@@ -45,4 +45,9 @@ public class sanPhamServices implements Services {
     public void delete(String temp) {
         sanPhamRepo.deleteById(temp);
     }
+
+    @Override
+    public SanPham Search(String masp) {
+        return sanPhamRepo.findById(masp).get();
+    }
 }
