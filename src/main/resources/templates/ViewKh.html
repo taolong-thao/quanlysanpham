@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tbody>
+    <tr>
+        <th>MAKH</th>
+        <th>TENKH</th>
+        <th>DIACHI</th>
+        <th>SDT</th>
+        <th>SOTK</th>
+        <th>SODUTK</th>
+        <th>DELTE</th>
+        <th>EDIT</th>
+    </tr>
+    <tr th:each="khachhang:${khachhang}">
+        <td th:text="${khachhang.maKh}"></td>
+        <td th:text="${khachhang.tenKh}"></td>
+        <td th:text="${khachhang.diaChi}"></td>
+        <td th:text="${khachhang.SDT}"></td>
+        <td th:text="${khachhang.soTK}"></td>
+        <td th:text="${khachhang.soDuTK}"></td>
+        <td><a th:href="@{/deleteKh?makh={maKh}(maKh=${khachhang.maKh})}">Delete</a>
+        <td><a th:href="@{/UpdateKh/{maKh}(maKh=${khachhang.maKh})}">edit</a>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>

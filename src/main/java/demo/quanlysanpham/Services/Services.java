@@ -16,4 +16,6 @@ public interface Services {
     public SanPham save(SanPham sanPham);
 
     public void delete(String temp);
+
+    public SanPham Search(String masp);
 }

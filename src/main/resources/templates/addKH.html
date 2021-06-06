@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/addKH}" th:object="${khachhang}" method="post">
+    <div class="form-group">
+        <label>maKh</label>
+        <input type="text" th:field="*{maKh}" class="form-control" placeholder="maKh">
+    </div>
+    <div class="form-group">
+        <label>tenKh</label>
+        <input type="text" th:field="*{tenKh}" class="form-control" placeholder="tenKh">
+    </div>
+    <div class="form-group">
+        <label>diaChi</label>
+        <input type="text" th:field="*{diaChi}" class="form-control" placeholder="diaChi">
+    </div>
+    <div class="form-group">
+        <label>SDT</label>
+        <input type="text" th:field="*{SDT}" class="form-control" placeholder="SDT">
+    </div>
+    <div class="form-group">
+        <label>soTK</label>
+        <input type="text" th:field="*{soTK}" class="form-control" placeholder="soTK">
+    </div>
+    <div class="form-group">
+        <label>soDuTK</label>
+        <input type="number" th:field="*{soDuTK}" class="form-control" placeholder="soDuTK">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>
