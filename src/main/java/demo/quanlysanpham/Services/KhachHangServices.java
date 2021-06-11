@@ -32,4 +32,5 @@ public class KhachHangServices {
     public KhachHang find(String makh) {
         return khachHangRepo.findById(makh).get();
     }
+
 }

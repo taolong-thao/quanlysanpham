@@ -2,7 +2,7 @@
 create database QuanLyBanHang;
 use QuanLyBanHang;
 
-
+drop database quanlybanhang;
 create TABLE SANPHAM 
 (
 	MASP VARCHAR(10) primary key,
@@ -10,14 +10,16 @@ create TABLE SANPHAM
     QUYCACH INT,
     GIAGOC FLOAT
 );
+drop table khachhang;
 create TABLE KHACHHANG 
 (
-	MAKH VARCHAR(10) primary key,
+	MAKH VARCHAR(10),
     TENKH nvarchar(30),
     DIACHI nvarchar(40),
 	SDT VARCHAR(15),
-    SOTAIKHOAN varchar(20),
-    SODUTK FLOAT
+    SOTAIKHOAN varchar(100) unique,
+    SODUTK FLOAT,
+    PRIMARY KEY (MAKH) 
 );
 create TABLE HOADON 
 (
@@ -50,10 +52,12 @@ create TABLE CHIETKHAU
 );
 create TABLE TAIKHOAN 
 (
+	MAKH VARCHAR(10),
 	ID VARCHAR(10),
     PASS varchar(10)
 );
-
+ALTER TABLE TAIKHOAN
+ADD CONSTRAINT fk_TK_KH FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH);
 ALTER TABLE CHITIETHOADON
 ADD CONSTRAINT fk_CK_CTHD FOREIGN KEY (MACK) REFERENCES CHIETKHAU(MACK);
 ALTER TABLE CHIETKHAU
@@ -65,22 +69,11 @@ ADD CONSTRAINT fk_SP_CTHD FOREIGN KEY (MASP) REFERENCES SANPHAM(MASP);
 ALTER TABLE CHITIETHOADON
 ADD CONSTRAINT fk_HD_CTHD FOREIGN KEY (MAHD) REFERENCES HOADON(MAHD);
 
-insert into TAIKHOAN
-values('admin','admin'),
-('001','001'),
-('002','002'),
-('003','003'),
-('004','004'),
-('005','005'),
-('006','006'),
-('007','007'),
-('008','008'),
-('009','009'),
-('010','010'),
-('011','011');
 
 insert into KHACHHANG
-values('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','123456789123',20000000),
+values
+('admin',null,null,null,'0000',0),
+('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','123456789123',20000000),
 ('KH002',N'Dương Lệ Hương',N'13/5 Nguyễn Thị Thập, Q7, TPHCM','012605988','123456789127',1000000),
 ('KH003',N'Nguyễn Hoàng Long',N'1083 CMT8, QTB, TPHCM','0987655231','123456789128',500000),
 ('KH004',N'Hoàng Hải Yến',N'139 Bành Văn Trân, TPHCM','0989326115','123456789129',3000000),
@@ -91,6 +84,20 @@ values('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình,
 ('KH009',N'Lại Tấn Phát',N'125/13 Nguyễn Sơn, Q.Tân Phú, TPHCM','0933918563','11456789127',500000),
 ('KH010',N'Hoàng Ngọc Thái Bảo',N'89 Trần Bình Trọng, PHCM','0167328553','173456789127',7000000),
 ('KH011',N'Phạm Hoàng Bảo',N'1754 Nguyễn Văn Linh, Q7, TPHCM','0913683616','153456789127',8000000);
+
+insert into TAIKHOAN
+values('admin','admin','admin'),
+('KH001','001','001'),
+('KH002','002','002'),
+('KH003','003','003'),
+('KH004','004','004'),
+('KH005','005','005'),
+('KH006','006','006'),
+('KH007','007','007'),
+('KH008','008','008'),
+('KH009','009','009'),
+('KH010','010','010'),
+('KH011','011','011');
 
 insert into HOADON
 values('HD01','KH001','2021-01-01',0),
