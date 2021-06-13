@@ -22,8 +22,12 @@ import demo.quanlysanpham.Services.KhachHangServices;
  */
 @Controller
 public class KhachHangController {
-    @Autowired
-    KhachHangServices khachHangServices;
+
+    private KhachHangServices khachHangServices;
+
+    public KhachHangController(KhachHangServices khachHangServices) {
+        this.khachHangServices = khachHangServices;
+    }
 
     @GetMapping("/ViewKH")
     public String viewKh(Model model) {

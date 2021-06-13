@@ -2,6 +2,7 @@ package demo.quanlysanpham.Controller;
 
 import java.util.List;
 
+import demo.quanlysanpham.Services.KhachHangServices;
 import demo.quanlysanpham.utils.SanPhamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,11 @@ import demo.quanlysanpham.Services.SanPhamServices;
 @Controller
 public class HomeController {
 
-    @Autowired
-    SanPhamServices sanPhamServices;
+    private SanPhamServices sanPhamServices;
+
+    public HomeController(SanPhamServices sanPhamServices) {
+        this.sanPhamServices = sanPhamServices;
+    }
 
     @RequestMapping(value = "/ViewSP", method = RequestMethod.GET)
     public String view(Model model) {

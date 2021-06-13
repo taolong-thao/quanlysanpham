@@ -3,6 +3,7 @@ package demo.quanlysanpham.Services;
 import java.util.List;
 import java.util.Optional;
 
+import demo.quanlysanpham.Repository.KhachHangRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,12 @@ import demo.quanlysanpham.Repository.SanPhamRepo;
  */
 @Service("Services")
 public class SanPhamServices {
-    @Autowired
-    SanPhamRepo sanPhamRepo;
 
+    private SanPhamRepo sanPhamRepo;
+
+    public SanPhamServices(SanPhamRepo sanPhamRepoo) {
+        this.sanPhamRepo = sanPhamRepoo;
+    }
 
     public List<SanPham> getAll() {
         return sanPhamRepo.findAll();

@@ -14,8 +14,11 @@ import demo.quanlysanpham.Repository.KhachHangRepo;
  */
 @Service
 public class KhachHangServices {
-    @Autowired
-    KhachHangRepo khachHangRepo;
+    private KhachHangRepo khachHangRepo;
+
+    public KhachHangServices(KhachHangRepo khachHangRepo) {
+        this.khachHangRepo = khachHangRepo;
+    }
 
     public List<KhachHang> getAll() {
         return khachHangRepo.findAll();
