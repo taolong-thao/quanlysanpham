@@ -54,5 +54,4 @@ public class KhachHang implements Serializable {
     @Column(name = "SODUTK")
     private Long soDuTK;
 
-   
 }

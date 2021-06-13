@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import demo.quanlysanpham.Model.KhachHang;
 
 /**
- *
  * @author dfean
  */
 @Repository

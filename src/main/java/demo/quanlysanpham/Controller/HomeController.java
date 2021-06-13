@@ -2,6 +2,7 @@ package demo.quanlysanpham.Controller;
 
 import java.util.List;
 
+import demo.quanlysanpham.utils.SanPhamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,62 +15,61 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import demo.quanlysanpham.Model.SanPham;
-import demo.quanlysanpham.Services.sanPhamServices;
+import demo.quanlysanpham.Services.SanPhamServices;
 
 /**
- *
  * @author dfean
  */
 @Controller
 public class HomeController {
 
     @Autowired
-    sanPhamServices sanPhamServices;
+    SanPhamServices sanPhamServices;
 
     @RequestMapping(value = "/ViewSP", method = RequestMethod.GET)
     public String view(Model model) {
         List<SanPham> list = sanPhamServices.getall();
-        model.addAttribute("sanpham", list);
+        model.addAttribute(SanPhamUtils.SAN_PHAM, list);
         return "View";
     }
 
     @GetMapping(value = "/addSP")
     public String whos(Model model) {
         SanPham sanPham = new SanPham();
-        model.addAttribute("sanpham", sanPham);
+        model.addAttribute(SanPhamUtils.SAN_PHAM, sanPham);
         return "addSP";
     }
 
     @PostMapping(value = "/addSP")
     public String savesp(@ModelAttribute("sanpham") SanPham sanPham) {
         sanPhamServices.save(sanPham);
-        return "redirect:/";
+        return SanPhamUtils.REDIRECT;
     }
 
     @GetMapping("/delete")
     public String del(@RequestParam("masp") String masp) {
         sanPhamServices.delete(masp);
-        return "redirect:/";
+        return SanPhamUtils.REDIRECT;
     }
 
     @GetMapping("/update/{masp}")
     public String edit(@PathVariable(value = "masp") String masp, Model model) {
         //get sp from sevice
         SanPham sanPham = sanPhamServices.find(masp);
-        model.addAttribute("sanpham", sanPham);
+        model.addAttribute(SanPhamUtils.SAN_PHAM, sanPham);
         return "editSP";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(Model model) {
         SanPham sanPham = new SanPham();
-        model.addAttribute("sanpham", sanPham);
+        model.addAttribute(SanPhamUtils.SAN_PHAM, sanPham);
         return "search";
     }
 
     @PostMapping("/search")
     public String searchsp(@RequestParam("maSp") String masp, Model model) {
-        model.addAttribute("sanpham", sanPhamServices.Search(masp));
+        model.addAttribute(SanPhamUtils.SAN_PHAM, sanPhamServices.Search(masp));
         return "search";
     }
 }

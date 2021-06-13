@@ -6,11 +6,9 @@ import org.springframework.stereotype.Repository;
 import demo.quanlysanpham.Model.SanPham;
 
 /**
- *
  * @author dfean
  */
 @Repository
-public interface sanPhamRepo extends JpaRepository<SanPham, String> {
-
+public interface SanPhamRepo extends JpaRepository<SanPham, String> {
 }
 

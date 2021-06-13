@@ -3,6 +3,7 @@ package demo.quanlysanpham.Controller;
 import java.util.List;
 import java.util.Random;
 
+import demo.quanlysanpham.utils.SanPhamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,6 @@ import demo.quanlysanpham.Model.KhachHang;
 import demo.quanlysanpham.Services.KhachHangServices;
 
 /**
- *
  * @author dfean
  */
 @Controller
@@ -28,13 +28,13 @@ public class KhachHangController {
     @GetMapping("/ViewKH")
     public String viewKh(Model model) {
         List<KhachHang> list = khachHangServices.getAll();
-        model.addAttribute("khachhang", list);
+        model.addAttribute(SanPhamUtils.KHACH_HANG, list);
         return "ViewKh";
     }
 
     @GetMapping("/addKH")
     public String addkh(Model model) {
-        model.addAttribute("khachhang", new KhachHang());
+        model.addAttribute(SanPhamUtils.KHACH_HANG, new KhachHang());
         return "addKH";
     }
 
@@ -52,43 +52,43 @@ public class KhachHangController {
                 .toString();
         khachHang.setSoTK(generatedString);
         khachHangServices.saveKH(khachHang);
-        return "redirect:/";
+        return SanPhamUtils.REDIRECT;
     }
 
     @PostMapping("/EditKh")
     public String edit(@ModelAttribute("khachhang") KhachHang khachHang) {
         khachHangServices.saveKH(khachHang);
-        return "redirect:/";
+        return SanPhamUtils.REDIRECT;
     }
 
     @RequestMapping("/deleteKh")
     public String del(@RequestParam("makh") String khachHang) {
         khachHangServices.delete(khachHang);
-        return "redirect:/";
+        return SanPhamUtils.REDIRECT;
     }
 
     @GetMapping("/UpdateKh/{maKh}")
     public String update(@PathVariable("maKh") String makh, Model model) {
         KhachHang khachHang = khachHangServices.find(makh);
-        model.addAttribute("khachhang", khachHang);
+        model.addAttribute(SanPhamUtils.KHACH_HANG, khachHang);
         return "UpdateKh";
     }
 
     @GetMapping("/searchkh")
     public String search(Model model) {
-        model.addAttribute("khachhang", new KhachHang());
+        model.addAttribute(SanPhamUtils.KHACH_HANG, new KhachHang());
         return "searchkh";
     }
 
     @PostMapping("/searchkh")
     public String searchbyID(@RequestParam("maKh") String makh, Model model) {
-        model.addAttribute("khachhang", khachHangServices.find(makh));
+        model.addAttribute(SanPhamUtils.KHACH_HANG, khachHangServices.find(makh));
         return "searchkh";
     }
 
     @GetMapping("/addMoney")
     public String addmoney(Model model) {
-        model.addAttribute("khachhang", new KhachHang());
+        model.addAttribute(SanPhamUtils.KHACH_HANG, new KhachHang());
         return "addMoney";
     }
 
@@ -98,6 +98,6 @@ public class KhachHangController {
         Long temp = khachHang.getSoDuTK() + sotien;
         khachHang.setSoDuTK(temp);
         khachHangServices.saveKH(khachHang);
-        return "redirect:/";
+        return SanPhamUtils.REDIRECT;
     }
 }

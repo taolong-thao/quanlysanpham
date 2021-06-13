@@ -16,7 +16,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
  * @author dfean
  */
 @Table(name = "SANPHAM")
@@ -38,6 +37,5 @@ public class SanPham implements Serializable {
     private int quyCach;
     @Column(name = "GIAGOC")
     private long giaGoc;
-
 
 }

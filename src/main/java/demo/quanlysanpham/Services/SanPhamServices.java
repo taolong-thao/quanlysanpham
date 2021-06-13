@@ -7,24 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.quanlysanpham.Model.SanPham;
-import demo.quanlysanpham.Repository.sanPhamRepo;
+import demo.quanlysanpham.Repository.SanPhamRepo;
 
 /**
- *
  * @author dfean
  */
 @Service("Services")
-public class sanPhamServices implements Services {
+public class SanPhamServices {
     @Autowired
-    sanPhamRepo sanPhamRepo;
+    SanPhamRepo sanPhamRepo;
 
-    @Override
 
     public List<SanPham> getall() {
         return sanPhamRepo.findAll();
     }
 
-    @Override
     public SanPham find(String temp) {
         Optional<SanPham> optional = sanPhamRepo.findById(temp);
         SanPham sanPham = null;
@@ -36,17 +33,14 @@ public class sanPhamServices implements Services {
         return sanPham;
     }
 
-    @Override
     public SanPham save(SanPham sanPham) {
         return sanPhamRepo.save(sanPham);
     }
 
-    @Override
     public void delete(String temp) {
         sanPhamRepo.deleteById(temp);
     }
 
-    @Override
     public SanPham Search(String masp) {
         return sanPhamRepo.findById(masp).get();
     }

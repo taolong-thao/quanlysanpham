@@ -9,7 +9,6 @@ import demo.quanlysanpham.Model.KhachHang;
 import demo.quanlysanpham.Repository.KhachHangRepo;
 
 /**
- *
  * @author dfean
  */
 @Service

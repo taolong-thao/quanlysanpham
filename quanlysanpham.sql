@@ -2,16 +2,14 @@
 create database QuanLyBanHang;
 use QuanLyBanHang;
 
-drop database quanlybanhang;
-create TABLE SANPHAM 
+create TABLE SANPHAM
 (
 	MASP VARCHAR(10) primary key,
 	TENSP nvarchar(30),
     QUYCACH INT,
     GIAGOC FLOAT
 );
-drop table khachhang;
-create TABLE KHACHHANG 
+create TABLE KHACHHANG
 (
 	MAKH VARCHAR(10),
     TENKH nvarchar(30),
