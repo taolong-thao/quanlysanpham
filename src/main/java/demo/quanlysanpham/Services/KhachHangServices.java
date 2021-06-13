@@ -1,6 +1,7 @@
 package demo.quanlysanpham.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,12 @@ public class KhachHangServices {
     }
 
     public KhachHang find(String makh) {
-        return khachHangRepo.findById(makh).get();
+        Optional<KhachHang> optional = khachHangRepo.findById(makh);
+        KhachHang khachHang = null;
+        if (optional.isPresent()) {
+            khachHang = optional.get();
+        }
+        return khachHang;
     }
 
 }

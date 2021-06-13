@@ -18,7 +18,7 @@ public class SanPhamServices {
     SanPhamRepo sanPhamRepo;
 
 
-    public List<SanPham> getall() {
+    public List<SanPham> getAll() {
         return sanPhamRepo.findAll();
     }
 
@@ -27,8 +27,6 @@ public class SanPhamServices {
         SanPham sanPham = null;
         if (optional.isPresent()) {
             sanPham = optional.get();
-        } else {
-            throw new RuntimeException("Khong tim thay masp : " + temp);
         }
         return sanPham;
     }
@@ -41,7 +39,4 @@ public class SanPhamServices {
         sanPhamRepo.deleteById(temp);
     }
 
-    public SanPham Search(String masp) {
-        return sanPhamRepo.findById(masp).get();
-    }
 }

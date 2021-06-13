@@ -95,9 +95,11 @@ public class KhachHangController {
     @PostMapping("/addtien")
     public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh) {
         KhachHang khachHang = khachHangServices.find(maKh);
-        Long temp = khachHang.getSoDuTK() + sotien;
-        khachHang.setSoDuTK(temp);
-        khachHangServices.saveKH(khachHang);
+        if (khachHang != null) {
+            Long temp = khachHang.getSoDuTK() + sotien;
+            khachHang.setSoDuTK(temp);
+            khachHangServices.saveKH(khachHang);
+        }
         return SanPhamUtils.REDIRECT;
     }
 }

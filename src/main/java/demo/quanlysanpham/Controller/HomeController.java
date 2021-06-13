@@ -28,7 +28,7 @@ public class HomeController {
 
     @RequestMapping(value = "/ViewSP", method = RequestMethod.GET)
     public String view(Model model) {
-        List<SanPham> list = sanPhamServices.getall();
+        List<SanPham> list = sanPhamServices.getAll();
         model.addAttribute(SanPhamUtils.SAN_PHAM, list);
         return "View";
     }
@@ -69,7 +69,7 @@ public class HomeController {
 
     @PostMapping("/search")
     public String searchsp(@RequestParam("maSp") String masp, Model model) {
-        model.addAttribute(SanPhamUtils.SAN_PHAM, sanPhamServices.Search(masp));
+        model.addAttribute(SanPhamUtils.SAN_PHAM, sanPhamServices.find(masp));
         return "search";
     }
 }
