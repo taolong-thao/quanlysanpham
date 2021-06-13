@@ -8,6 +8,8 @@
 </head>
 <body>
 <h1 style="text-align: center">Hello các bạn</h1>
+<div class="alert alert-primary" role="alert" th:text="${sucesss}" th:if="${sucesss}"></div>
+<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
 <div><a th:href="@{/ViewSP}"> Xem Sản Phẩm</a>
     <a th:href="@{/addSP}"> Thêm Sản Phẩm</a>
     <a th:href="@{/search}"> Tìm Kiếm Sản Phẩm</a>

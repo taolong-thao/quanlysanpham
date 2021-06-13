@@ -2,9 +2,6 @@ package demo.quanlysanpham.Controller;
 
 import java.util.List;
 
-import demo.quanlysanpham.Services.KhachHangServices;
-import demo.quanlysanpham.utils.SanPhamUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import demo.quanlysanpham.Model.SanPham;
 import demo.quanlysanpham.Services.SanPhamServices;
+import demo.quanlysanpham.utils.SanPhamUtils;
 
 /**
  * @author dfean
@@ -45,14 +44,21 @@ public class HomeController {
     }
 
     @PostMapping(value = "/addSP")
-    public String savesp(@ModelAttribute("sanpham") SanPham sanPham) {
-        sanPhamServices.save(sanPham);
-        return SanPhamUtils.REDIRECT;
+    public String savesp(@ModelAttribute("sanpham") SanPham sanPham, RedirectAttributes redirectAttributes) {
+        if (sanPham.getTenSp() == null || sanPham.getQuyCach() == 0 || sanPham.getGiaGoc() == 0) {
+            redirectAttributes.addFlashAttribute("error", "Thêm sản phẩm thất bại!");
+            return SanPhamUtils.REDIRECT;
+        } else {
+            sanPhamServices.save(sanPham);
+            redirectAttributes.addFlashAttribute("sucesss", "Thêm sản phẩm thành công!");
+            return SanPhamUtils.REDIRECT;
+        }
     }
 
     @GetMapping("/delete")
-    public String del(@RequestParam("masp") String masp) {
+    public String del(@RequestParam("masp") String masp, RedirectAttributes redirectAttributes) {
         sanPhamServices.delete(masp);
+        redirectAttributes.addFlashAttribute("sucesss", "Xóa " + masp + " thành công!");
         return SanPhamUtils.REDIRECT;
     }
 
