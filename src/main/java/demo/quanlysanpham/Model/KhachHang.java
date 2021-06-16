@@ -38,7 +38,7 @@ public class KhachHang implements Serializable {
             parameters = {
                     @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
                     @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "KH"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d")})
     @Column(name = "MAKH")
     private String maKh;
     @Column(name = "TENKH")
@@ -47,8 +47,8 @@ public class KhachHang implements Serializable {
     private String diaChi;
     @Column(name = "SDT")
     private String SDT;
-    @GeneratedValue(generator = "SOTAIKHOAN")
-    @GenericGenerator(name = "SOTAIKHOAN", strategy = "demo.quanlysanpham.Model.generator.MyGenerator")
+    @Column(name = "PASS")
+    private String passWord;
     @Column(name = "SOTAIKHOAN")
     private String soTK;
     @Column(name = "SODUTK")

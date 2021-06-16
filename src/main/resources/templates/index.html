@@ -7,18 +7,19 @@
     <title>Title</title>
 </head>
 <body>
-<h1 style="text-align: center">Hello các bạn</h1>
-<div class="alert alert-primary" role="alert" th:text="${sucesss}" th:if="${sucesss}"></div>
-<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
-<div><a th:href="@{/ViewSP}"> Xem Sản Phẩm</a>
-    <a th:href="@{/addSP}"> Thêm Sản Phẩm</a>
-    <a th:href="@{/search}"> Tìm Kiếm Sản Phẩm</a>
+<h1 style="text-align: center">Phân bón</h1>
+<div class="container" style="margin-top: 50px;">
+    <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
+        <a th:href="@{/login}">Login</a>
+        <div><a th:href="@{/ViewIndex}"> Xem Sản Phẩm</a>
+            <a th:href="@{/search}"> Tìm Kiếm Sản Phẩm</a>
+        </div>
+    </div>
 </div>
 <div>
-    <a th:href="@{/ViewKH}">Xem Khach Hang</a>
-    <a th:href="@{/addKH}">Thêm Khach Hang</a>
-    <a th:href="@{/searchkh}">Tìm Kiếm Khach Hang</a>
-    <a th:href="@{/addMoney}">Nộp tiền</a>
+
 </div>
+
+
 </body>
 </html>

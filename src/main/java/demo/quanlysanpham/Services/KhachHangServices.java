@@ -3,7 +3,6 @@ package demo.quanlysanpham.Services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.quanlysanpham.Model.KhachHang;
@@ -41,4 +40,15 @@ public class KhachHangServices {
         return khachHang;
     }
 
+    public Optional<KhachHang> findByString(String makh) {
+        return khachHangRepo.findById(makh);
+    }
+
+    public boolean Checklogin(String makh, String pass) {
+        Optional<KhachHang> optional = findByString(makh);
+        if (optional.isPresent() && optional.get().getPassWord().equals(pass)) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -22,7 +22,9 @@ import demo.quanlysanpham.utils.SanPhamUtils;
  */
 @Controller
 public class KhachHangController {
-
+    private static String Search = "searchkh";
+    private static String addKh = "addKH";
+    private static String Error = "error";
     private KhachHangServices khachHangServices;
 
     public KhachHangController(KhachHangServices khachHangServices) {
@@ -39,14 +41,14 @@ public class KhachHangController {
     @GetMapping("/addKH")
     public String addkh(Model model) {
         model.addAttribute(SanPhamUtils.KHACH_HANG, new KhachHang());
-        return "addKH";
+        return addKh;
     }
 
     @PostMapping("/addKH")
-    public String addKH(@ModelAttribute("khachhang") KhachHang khachHang, RedirectAttributes redirectAttributes) {
-        if (khachHang.getTenKh() == null || khachHang.getDiaChi() == null || khachHang.getSDT() == null || khachHang.getSoDuTK() == null) {
-            redirectAttributes.addFlashAttribute("error", "Thêm Khách hàng thất bại");
-            return SanPhamUtils.REDIRECT;
+    public String saveKH(@ModelAttribute("khachhang") KhachHang khachHang, RedirectAttributes redirectAttributes) {
+        if (khachHang.getTenKh() == null || khachHang.getDiaChi() == null || khachHang.getSDT() == null || khachHang.getSoDuTK() == null || khachHang.getPassWord() == null) {
+            redirectAttributes.addFlashAttribute(Error, "Thêm Khách hàng thất bại");
+            return SanPhamUtils.REDIRECT + "addKH";
         } else {
             int leftLimit = 48;
             int rightLimit = 122;
@@ -60,22 +62,28 @@ public class KhachHangController {
                     .toString();
             khachHang.setSoTK(generatedString);
             khachHangServices.saveKH(khachHang);
-            redirectAttributes.addFlashAttribute("sucesss", "Thêm Khách hàng thành Công");
+            redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
             return SanPhamUtils.REDIRECT;
         }
     }
 
     @PostMapping("/EditKh")
     public String edit(@ModelAttribute("khachhang") KhachHang khachHang, RedirectAttributes redirectAttributes) {
-        khachHangServices.saveKH(khachHang);
-        redirectAttributes.addFlashAttribute("sucesss", "Edit Khách hàng " + khachHang.getTenKh() + " thành Công");
-        return SanPhamUtils.REDIRECT;
+        if (khachHang.getTenKh() == null || khachHang.getDiaChi() == null || khachHang.getSDT() == null || khachHang.getSoDuTK() == null) {
+            redirectAttributes.addFlashAttribute(Error, "Update Khách hàng thất bại");
+            return SanPhamUtils.REDIRECT + "editSP";
+        } else {
+            khachHangServices.saveKH(khachHang);
+            redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Edit Khách hàng " + khachHang.getTenKh() + " thành Công");
+            return SanPhamUtils.REDIRECT;
+        }
+
     }
 
     @RequestMapping("/deleteKh")
     public String del(@RequestParam("makh") String khachHang, RedirectAttributes redirectAttributes) {
         khachHangServices.delete(khachHang);
-        redirectAttributes.addFlashAttribute("sucesss", "Xóa Khách hàng " + khachHang + " thành Công");
+        redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Xóa Khách hàng " + khachHang + " thành Công");
         return SanPhamUtils.REDIRECT;
     }
 
@@ -89,17 +97,17 @@ public class KhachHangController {
     @GetMapping("/searchkh")
     public String search(Model model) {
         model.addAttribute(SanPhamUtils.KHACH_HANG, new KhachHang());
-        return "searchkh";
+        return Search;
     }
 
     @PostMapping("/searchkh")
     public String searchbyID(@RequestParam("maKh") String makh, Model model, RedirectAttributes redirectAttributes) {
-        if (khachHangServices.find(makh) == null) {
-            redirectAttributes.addFlashAttribute("error", makh + "không tồn tại");
-            return "searchkh";
+        if (khachHangServices.find(makh) == null || makh == null) {
+            redirectAttributes.addFlashAttribute(Error, makh + "không tồn tại");
+            return SanPhamUtils.REDIRECT + Search;
         } else {
             model.addAttribute(SanPhamUtils.KHACH_HANG, khachHangServices.find(makh));
-            return "searchkh";
+            return Search;
         }
     }
 
@@ -110,13 +118,14 @@ public class KhachHangController {
     }
 
     @PostMapping("/addtien")
-    public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh, RedirectAttributes redirectAttributes) {
+    public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh) {
         KhachHang khachHang = khachHangServices.find(maKh);
         if (khachHang != null) {
             Long temp = khachHang.getSoDuTK() + sotien;
             khachHang.setSoDuTK(temp);
             khachHangServices.saveKH(khachHang);
         }
+
         return SanPhamUtils.REDIRECT;
     }
 }

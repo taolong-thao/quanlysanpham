@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,11 +27,18 @@ public class HomeController {
         this.sanPhamServices = sanPhamServices;
     }
 
-    @RequestMapping(value = "/ViewSP", method = RequestMethod.GET)
+    @GetMapping(value = "/ViewSP")
     public String view(Model model) {
         List<SanPham> list = sanPhamServices.getAll();
         model.addAttribute(SanPhamUtils.SAN_PHAM, list);
         return "View";
+    }
+
+    @GetMapping(value = "/ViewIndex")
+    public String viewIndex(Model model) {
+        List<SanPham> list = sanPhamServices.getAll();
+        model.addAttribute(SanPhamUtils.SAN_PHAM, list);
+        return "ViewIndex";
     }
 
     @GetMapping(value = "/addSP")
@@ -47,10 +52,10 @@ public class HomeController {
     public String savesp(@ModelAttribute("sanpham") SanPham sanPham, RedirectAttributes redirectAttributes) {
         if (sanPham.getTenSp() == null || sanPham.getQuyCach() == 0 || sanPham.getGiaGoc() == 0) {
             redirectAttributes.addFlashAttribute("error", "Thêm sản phẩm thất bại!");
-            return SanPhamUtils.REDIRECT;
+            return SanPhamUtils.REDIRECT + "addSP";
         } else {
             sanPhamServices.save(sanPham);
-            redirectAttributes.addFlashAttribute("sucesss", "Thêm sản phẩm thành công!");
+            redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm sản phẩm thành công!");
             return SanPhamUtils.REDIRECT;
         }
     }
@@ -58,7 +63,7 @@ public class HomeController {
     @GetMapping("/delete")
     public String del(@RequestParam("masp") String masp, RedirectAttributes redirectAttributes) {
         sanPhamServices.delete(masp);
-        redirectAttributes.addFlashAttribute("sucesss", "Xóa " + masp + " thành công!");
+        redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Xóa " + masp + " thành công!");
         return SanPhamUtils.REDIRECT;
     }
 
@@ -70,7 +75,19 @@ public class HomeController {
         return "editSP";
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @PostMapping(value = "/UpdateSP")
+    public String updatesp(@ModelAttribute("sanpham") SanPham sanPham, RedirectAttributes redirectAttributes) {
+        if (sanPham.getTenSp() == null || sanPham.getQuyCach() == 0 || sanPham.getGiaGoc() == 0) {
+            redirectAttributes.addFlashAttribute("error", "Update sản phẩm thất bại!");
+            return SanPhamUtils.REDIRECT + "editSP";
+        } else {
+            sanPhamServices.save(sanPham);
+            redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Update sản phẩm thành công!");
+            return SanPhamUtils.REDIRECT;
+        }
+    }
+
+    @GetMapping(value = "/search")
     public String search(Model model) {
         SanPham sanPham = new SanPham();
         model.addAttribute(SanPhamUtils.SAN_PHAM, sanPham);
@@ -78,7 +95,12 @@ public class HomeController {
     }
 
     @PostMapping("/search")
-    public String searchsp(@RequestParam("maSp") String masp, Model model) {
+    public String searchsp(@RequestParam("maSp") String masp, Model model, RedirectAttributes redirectAttributes) {
+        if (sanPhamServices.find(masp) == null || masp == null) {
+            redirectAttributes.addFlashAttribute("error", masp + "không tồn tại");
+            return SanPhamUtils.REDIRECT + "search";
+        }
+
         model.addAttribute(SanPhamUtils.SAN_PHAM, sanPhamServices.find(masp));
         return "search";
     }
