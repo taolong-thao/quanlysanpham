@@ -31,17 +31,34 @@ public class LoginController {
         this.khachHangServices = khachHangServices;
     }
 
+    @GetMapping(value = "/ViewIndex")
+    public String viewIndex(Model model, HttpSession session) {
+        List<SanPham> list = sanPhamServices.getAll();
+        model.addAttribute(SanPhamUtils.SAN_PHAM, list);
+        if (session.getAttribute("Name") != null) {
+            model.addAttribute("buy", "Thêm Vào giỏ Hàng");
+            model.addAttribute("hiddenlogin", "display: none");
+            model.addAttribute("logout", "Logout");
+            return "ViewIndex";
+        } else {
+            model.addAttribute("login", "Mua Ngay!");
+            model.addAttribute("hidden", "display: none");
+            return "ViewIndex";
+        }
+
+    }
 
     @GetMapping("/login")
     public String login() {
-
         return "login";
     }
 
     @GetMapping("quanly")
-    public String quanly() {
-
-        return "quanly";
+    public String quanly(HttpSession session) {
+        if (session.getAttribute("Name") == "admin") {
+            return "quanly";
+        }
+        return "login";
     }
 
     @PostMapping("/check")
@@ -52,6 +69,10 @@ public class LoginController {
             session.setAttribute("Name", makh);
             List<SanPham> list = sanPhamServices.getAll();
             model.addAttribute(SanPhamUtils.SAN_PHAM, list);
+            model.addAttribute("logout", "Logout");
+            model.addAttribute("login", "display: none");
+            model.addAttribute("profile", "Profile");
+
             return "index";
         } else if (makh.equals("admin") && pass.equals("admin")) {
             List<KhachHang> list = khachHangServices.getAll();

@@ -8,9 +8,12 @@
 </head>
 <body>
 <h1 style="text-align: center">Phân bón</h1>
+<p th:text="${session.Name}"></p>
+<a th:href="@{/profile/{maKh}(maKh=${session.Name})}" th:text="${profile}"></a>
+<a th:href="@{/logout}" th:text="${logout}"></a>
 <div class="container" style="margin-top: 50px;">
     <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
-        <a th:href="@{/login}">Login</a>
+        <a th:style="${login}" th:href="@{/login}">Login</a>
         <div><a th:href="@{/ViewIndex}"> Xem Sản Phẩm</a>
             <a th:href="@{/search}"> Tìm Kiếm Sản Phẩm</a>
         </div>

@@ -34,12 +34,6 @@ public class HomeController {
         return "View";
     }
 
-    @GetMapping(value = "/ViewIndex")
-    public String viewIndex(Model model) {
-        List<SanPham> list = sanPhamServices.getAll();
-        model.addAttribute(SanPhamUtils.SAN_PHAM, list);
-        return "ViewIndex";
-    }
 
     @GetMapping(value = "/addSP")
     public String whos(Model model) {
@@ -56,7 +50,7 @@ public class HomeController {
         } else {
             sanPhamServices.save(sanPham);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm sản phẩm thành công!");
-            return SanPhamUtils.REDIRECT;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
     }
 
@@ -64,12 +58,11 @@ public class HomeController {
     public String del(@RequestParam("masp") String masp, RedirectAttributes redirectAttributes) {
         sanPhamServices.delete(masp);
         redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Xóa " + masp + " thành công!");
-        return SanPhamUtils.REDIRECT;
+        return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
     }
 
     @GetMapping("/update/{masp}")
     public String edit(@PathVariable(value = "masp") String masp, Model model) {
-        //get sp from sevice
         SanPham sanPham = sanPhamServices.find(masp);
         model.addAttribute(SanPhamUtils.SAN_PHAM, sanPham);
         return "editSP";
@@ -83,7 +76,7 @@ public class HomeController {
         } else {
             sanPhamServices.save(sanPham);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Update sản phẩm thành công!");
-            return SanPhamUtils.REDIRECT;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
     }
 

@@ -21,8 +21,6 @@
                     <th scope="col">SOTK</th>
                     <th scope="col">Password</th>
                     <th scope="col">SODUTK</th>
-                    <th scope="col">DELTE</th>
-                    <th scope="col">EDIT</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,8 +32,6 @@
                     <td th:text="${khachhang.soTK}"></td>
                     <td th:text="${khachhang.passWord}"></td>
                     <td th:text="${khachhang.soDuTK}"></td>
-                    <td><a th:href="@{/deleteKh?makh={maKh}(maKh=${khachhang.maKh})}">Delete</a>
-                    <td><a th:href="@{/UpdateKh/{maKh}(maKh=${khachhang.maKh})}">edit</a>
                 </tr>
 
                 </tbody>

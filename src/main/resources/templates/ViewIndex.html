@@ -7,6 +7,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<p th:text="${session.Name}"></p>
+<a th:href="@{/logout}" th:text="${logout}"></a>
 <div class="container" style="margin-top: 50px;">
     <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
         <div class="col-sm-12">
@@ -29,7 +31,8 @@
                     <td th:text="${sanpham.quyCach}"></td>
                     <td th:text="${sanpham.giaGoc}"></td>
                     <td>
-                        <a th:href="@{/login}">Mua</a>
+                        <a th:style="${hiddenlogin}" th:text="${login}" th:href="@{/login}"></a>
+                        <a th:style="${hidden}" th:text="${buy}" th:href="@{/login}"></a>
                     </td>
                 </tr>
 

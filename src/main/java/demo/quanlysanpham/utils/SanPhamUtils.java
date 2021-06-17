@@ -5,4 +5,5 @@ public class SanPhamUtils {
     public static String KHACH_HANG = "khachhang";
     public static String REDIRECT = "redirect:/";
     public static String SUCCESS = "sucesss";
+    public static String Manager = "quanly";
 }

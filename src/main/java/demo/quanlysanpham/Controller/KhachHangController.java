@@ -63,7 +63,7 @@ public class KhachHangController {
             khachHang.setSoTK(generatedString);
             khachHangServices.saveKH(khachHang);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
-            return SanPhamUtils.REDIRECT;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
     }
 
@@ -75,7 +75,7 @@ public class KhachHangController {
         } else {
             khachHangServices.saveKH(khachHang);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Edit Khách hàng " + khachHang.getTenKh() + " thành Công");
-            return SanPhamUtils.REDIRECT;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
 
     }
@@ -84,7 +84,7 @@ public class KhachHangController {
     public String del(@RequestParam("makh") String khachHang, RedirectAttributes redirectAttributes) {
         khachHangServices.delete(khachHang);
         redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Xóa Khách hàng " + khachHang + " thành Công");
-        return SanPhamUtils.REDIRECT;
+        return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
     }
 
     @GetMapping("/UpdateKh/{maKh}")
@@ -92,6 +92,13 @@ public class KhachHangController {
         KhachHang khachHang = khachHangServices.find(makh);
         model.addAttribute(SanPhamUtils.KHACH_HANG, khachHang);
         return "UpdateKh";
+    }
+
+    @GetMapping("/profile/{maKh}")
+    public String profile(@PathVariable("maKh") String makh, Model model) {
+        KhachHang khachHang = khachHangServices.find(makh);
+        model.addAttribute(SanPhamUtils.KHACH_HANG, khachHang);
+        return "profile";
     }
 
     @GetMapping("/searchkh")
@@ -103,7 +110,7 @@ public class KhachHangController {
     @PostMapping("/searchkh")
     public String searchbyID(@RequestParam("maKh") String makh, Model model, RedirectAttributes redirectAttributes) {
         if (khachHangServices.find(makh) == null || makh == null) {
-            redirectAttributes.addFlashAttribute(Error, makh + "không tồn tại");
+            redirectAttributes.addFlashAttribute(Error, makh + " không tồn tại");
             return SanPhamUtils.REDIRECT + Search;
         } else {
             model.addAttribute(SanPhamUtils.KHACH_HANG, khachHangServices.find(makh));
@@ -126,6 +133,6 @@ public class KhachHangController {
             khachHangServices.saveKH(khachHang);
         }
 
-        return SanPhamUtils.REDIRECT;
+        return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
     }
 }
