@@ -28,8 +28,7 @@
                 <th scope="col">TENSP</th>
                 <th scope="col">QUYCACH</th>
                 <th scope="col">GIAGOC</th>
-                <th scope="col">Delete</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Mua</th>
             </tr>
             </thead>
             <tbody>
@@ -38,10 +37,10 @@
                 <td th:text="${sanpham.tenSp}"></td>
                 <td th:text="${sanpham.quyCach}"></td>
                 <td th:text="${sanpham.giaGoc}"></td>
-                <td><a th:href="@{/delete?masp={masp}(masp=${sanpham.maSp})}">Delete</a>
-                </td>
                 <td>
-                    <a th:href="@{/update/{masp}(masp=${sanpham.maSp})}">Edit</a>
+                    <a th:style="${hiddenlogin}" th:text="${login}" th:href="@{/login}"></a>
+                    <input th:style="${hidden}" name="maSp"
+                           type="checkbox" th:value="${sanpham.maSp}"/>
                 </td>
             </tr>
             </tbody>

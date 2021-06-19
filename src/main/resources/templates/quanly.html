@@ -7,7 +7,10 @@
 </head>
 <body>
 <div>
+    <p th:text="${session.admin}"></p>
+    <a th:href="@{/logout}" th:text="${logout}"></a></br>
     <a th:href="@{/ViewSP}"> Xem Sản Phẩm</a>
+    <a th:href="@{/addSP}"> thêm Sản Phẩm</a>
     <a th:href="@{/ViewKH}">Xem Khach Hang</a>
     <a th:href="@{/addKH}">Thêm Khach Hang</a>
     <a th:href="@{/searchkh}">Tìm Kiếm Khach Hang</a>

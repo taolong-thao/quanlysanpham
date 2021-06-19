@@ -13,31 +13,39 @@
     <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
         <div class="col-sm-12">
             <h3>View Sản Phẩm</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">MASP</th>
-                    <th scope="col">TENSP</th>
-                    <th scope="col">QUYCACH</th>
-                    <th scope="col">GIAGOC</th>
-                    <th scope="col">Mua</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="sanpham:${sanpham}">
-                    <td th:text="${sanpham.maSp}"></td>
-                    <td th:text="${sanpham.tenSp}"></td>
-                    <td th:text="${sanpham.quyCach}"></td>
-                    <td th:text="${sanpham.giaGoc}"></td>
-                    <td>
-                        <a th:style="${hiddenlogin}" th:text="${login}" th:href="@{/login}"></a>
-                        <a th:style="${hidden}" th:text="${buy}" th:href="@{/login}"></a>
-                    </td>
-                </tr>
+            <form th:action="@{/ViewIndex}" th:object="${sanpham}" method="post">
 
-                </tbody>
-            </table>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">MASP</th>
+                        <th scope="col">TENSP</th>
+                        <th scope="col">QUYCACH</th>
+                        <th scope="col">GIAGOC</th>
+                        <th scope="col">Mua</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="sanpham:${sanpham}">
+                        <td th:text="${sanpham.maSp}"></td>
+                        <td th:text="${sanpham.tenSp}"></td>
+                        <td th:text="${sanpham.quyCach}"></td>
+                        <td th:text="${sanpham.giaGoc}"></td>
+                        <td>
+                            <a th:style="${hiddenlogin}" th:text="${login}" th:href="@{/login}"></a>
+                            <input th:style="${hidden}" name="maSp"
+                                   type="checkbox" th:value="${sanpham.maSp}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p style="color: red" th:text="${empty}">Checked Empty</p>
+                <p style="color: green" th:text="${error}">Mua Sản Phẩm Thành Công</p>
+                <button style="text-align: right" th:style="${hidden}" th:text="${buy}" type="submit"></button>
+
+            </form>
+
         </div>
     </div>
 </body>

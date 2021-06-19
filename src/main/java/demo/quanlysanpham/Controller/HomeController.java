@@ -90,7 +90,7 @@ public class HomeController {
     @PostMapping("/search")
     public String searchsp(@RequestParam("maSp") String masp, Model model, RedirectAttributes redirectAttributes) {
         if (sanPhamServices.find(masp) == null || masp == null) {
-            redirectAttributes.addFlashAttribute("error", masp + "không tồn tại");
+            redirectAttributes.addFlashAttribute("error", masp + " không tồn tại");
             return SanPhamUtils.REDIRECT + "search";
         }
 

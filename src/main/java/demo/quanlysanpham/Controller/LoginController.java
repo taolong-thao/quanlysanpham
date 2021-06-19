@@ -1,14 +1,18 @@
 package demo.quanlysanpham.Controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import demo.quanlysanpham.Model.KhachHang;
@@ -36,7 +40,7 @@ public class LoginController {
         List<SanPham> list = sanPhamServices.getAll();
         model.addAttribute(SanPhamUtils.SAN_PHAM, list);
         if (session.getAttribute("Name") != null) {
-            model.addAttribute("buy", "Thêm Vào giỏ Hàng");
+            model.addAttribute("buy", "Mua Sản Phẩm");
             model.addAttribute("hiddenlogin", "display: none");
             model.addAttribute("logout", "Logout");
             return "ViewIndex";
@@ -48,6 +52,28 @@ public class LoginController {
 
     }
 
+    @PostMapping("/ViewIndex")
+    public String oder(@ModelAttribute("sanpham") SanPham sanPham, Model model, HttpServletResponse response) throws IOException {
+        sanPham = sanPhamServices.find(sanPham.getMaSp());
+        if (sanPham == null) {
+            model.addAttribute("error", "Bạn chưa chọn sản phẩm!");
+            return SanPhamUtils.REDIRECT + "ViewIndex";
+        } else {
+            List<SanPham> sp = new ArrayList<>();
+            sp.add(sanPham);
+            response.setContentType("text/plain");
+            response.setHeader("Content-Disposition", "attachment;filename=myFile.txt");
+            ServletOutputStream out = response.getOutputStream();
+            out.println(String.valueOf(sp));
+            out.flush();
+            out.close();
+            model.addAttribute("error", "Mua Sản Phẩm Thành Công!");
+            return SanPhamUtils.REDIRECT + "ViewIndex";
+        }
+
+
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -55,7 +81,7 @@ public class LoginController {
 
     @GetMapping("quanly")
     public String quanly(HttpSession session) {
-        if (session.getAttribute("Name") == "admin") {
+        if (session.getAttribute("admin") == "admin") {
             return "quanly";
         }
         return "login";
@@ -72,26 +98,19 @@ public class LoginController {
             model.addAttribute("logout", "Logout");
             model.addAttribute("login", "display: none");
             model.addAttribute("profile", "Profile");
-
+            if (makh.equals("admin")) {
+                session.setAttribute("admin", makh);
+                List<KhachHang> list2 = khachHangServices.getAll();
+                model.addAttribute(SanPhamUtils.KHACH_HANG, list2);
+                return "quanly";
+            }
             return "index";
-        } else if (makh.equals("admin") && pass.equals("admin")) {
-            List<KhachHang> list = khachHangServices.getAll();
-            model.addAttribute(SanPhamUtils.KHACH_HANG, list);
-            return "quanly";
         } else {
-            model.addAttribute("error", "Tai Khoan Khong ton tai");
+            model.addAttribute("error", "Tai Khoan Khong ton tai!");
         }
         return "login";
     }
 
-    @RequestMapping("list")
-    public String getAll(Model model, HttpSession session) {
-        if (session.getAttribute("Name") != null) {
-            model.addAttribute(SanPhamUtils.SAN_PHAM, sanPhamServices.getAll());
-            return "View";
-        }
-        return "login";
-    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
