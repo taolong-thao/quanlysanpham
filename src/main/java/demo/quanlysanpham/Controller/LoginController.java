@@ -1,13 +1,16 @@
 package demo.quanlysanpham.Controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.util.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +25,6 @@ import demo.quanlysanpham.Services.SanPhamServices;
 import demo.quanlysanpham.utils.SanPhamUtils;
 
 /**
- *
  * @author dfean
  */
 @Controller
@@ -54,25 +56,22 @@ public class LoginController {
 
     @PostMapping("/ViewIndex")
     public String oder(@ModelAttribute("sanpham") SanPham sanPham, Model model, HttpServletResponse response) throws IOException {
-        sanPham = sanPhamServices.find(sanPham.getMaSp());
-        if (sanPham == null) {
-            model.addAttribute("error", "Bạn chưa chọn sản phẩm!");
-            return SanPhamUtils.REDIRECT + "ViewIndex";
-        } else {
-            List<SanPham> sp = new ArrayList<>();
-            sp.add(sanPham);
-            response.setContentType("text/plain");
-            response.setHeader("Content-Disposition", "attachment;filename=myFile.txt");
-            ServletOutputStream out = response.getOutputStream();
-            out.println(String.valueOf(sp));
-            out.flush();
-            out.close();
+        if (!StringUtils.isNullOrEmpty(sanPham.getMaSp())) {
+            List<SanPham> list = new ArrayList<>();
+            String[] str = sanPham.getMaSp().split(",");
+            for (String t : str) {
+                SanPham sp = new SanPham();
+                sp = sanPhamServices.find(t);
+                list.add(sp);
+            }
+            SanPhamUtils.WriteFile(response, list);
             model.addAttribute("error", "Mua Sản Phẩm Thành Công!");
-            return SanPhamUtils.REDIRECT + "ViewIndex";
+        } else {
+            model.addAttribute("error", "Bạn chưa chọn sản phẩm!");
         }
-
-
+        return SanPhamUtils.REDIRECT + "ViewIndex";
     }
+
 
     @GetMapping("/login")
     public String login() {
