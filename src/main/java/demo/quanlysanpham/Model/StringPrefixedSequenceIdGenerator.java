@@ -16,7 +16,7 @@ import org.hibernate.type.Type;
  *
  * @author dfean
  */
-public class StringPrefixedSequenceIdGenerator extends  SequenceStyleGenerator {
+public class StringPrefixedSequenceIdGenerator extends SequenceStyleGenerator {
 
     public static final String VALUE_PREFIX_PARAMETER = "valuePrefix";
     public static final String VALUE_PREFIX_DEFAULT = "";

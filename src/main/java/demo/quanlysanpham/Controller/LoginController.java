@@ -39,7 +39,7 @@ public class LoginController {
 
     @GetMapping(value = "/ViewIndex")
     public String viewIndex(Model model, HttpSession session) {
-        List<SanPham> list =  sanPhamServices.getAll();
+        List<SanPham> list = sanPhamServices.getAll();
         model.addAttribute(SanPhamUtils.SAN_PHAM, list);
         if (session.getAttribute("Name") != null) {
             model.addAttribute("buy", "Mua Sản Phẩm");

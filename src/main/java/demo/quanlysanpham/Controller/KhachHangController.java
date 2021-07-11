@@ -33,7 +33,7 @@ public class KhachHangController {
 
     @GetMapping("/ViewKH")
     public String viewKh(Model model) {
-        List<KhachHang> list =  khachHangServices.getAll();
+        List<KhachHang> list = khachHangServices.getAll();
         model.addAttribute(SanPhamUtils.KHACH_HANG, list);
         return "ViewKh";
     }

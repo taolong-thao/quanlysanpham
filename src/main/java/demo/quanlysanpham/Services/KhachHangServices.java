@@ -20,7 +20,7 @@ public class KhachHangServices {
     }
 
     public List<KhachHang> getAll() {
-        return  khachHangRepo.findAll();
+        return khachHangRepo.findAll();
     }
 
     public void saveKH(KhachHang khachHang) {

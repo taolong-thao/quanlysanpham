@@ -21,7 +21,7 @@ import demo.quanlysanpham.utils.SanPhamUtils;
 @Controller
 public class HomeController {
 
-    private SanPhamServices  sanPhamServices;
+    private SanPhamServices sanPhamServices;
 
     public HomeController(SanPhamServices sanPhamServices) {
         this.sanPhamServices = sanPhamServices;

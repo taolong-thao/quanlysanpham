@@ -33,7 +33,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class SanPham implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,  generator = "MASP")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MASP")
     @GenericGenerator(
             name = "MASP",
             strategy = "demo.quanlysanpham.Model.StringPrefixedSequenceIdGenerator",

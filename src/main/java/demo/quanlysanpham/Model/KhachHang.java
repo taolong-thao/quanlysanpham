@@ -23,7 +23,7 @@ import lombok.ToString;
  * @author dfean
  */
 @Entity
-@Table(name =  "khachhang")
+@Table(name = "khachhang")
 @Getter
 @Setter
 @NoArgsConstructor

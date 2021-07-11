@@ -23,7 +23,7 @@ public class SanPhamServices {
     }
 
     public List<SanPham> getAll() {
-        return  sanPhamRepo.findAll();
+        return sanPhamRepo.findAll();
     }
 
     public SanPham find(String temp) {
