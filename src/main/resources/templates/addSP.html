@@ -15,7 +15,7 @@
             <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
             <form action="#" th:action="@{/addSP}" th:object="${sanpham}" method="post">
                 <div class="form-group">
-                    <label>Product's name</label>
+                    <label>Product's Name</label>
                     <i><input type="text" th:field="*{tenSp}" class="form-control" placeholder="Product's name"></i>
                 </div>
                 <div class="form-group">

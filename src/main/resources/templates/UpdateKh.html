@@ -5,37 +5,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Customer Update</title>
 </head>
-<body>
-<h1 style="text-align: center">Update Khách Hàng</h1>
+<body style="background-color:whitesmoke;">
 <div class="container" style="margin-top: 50px;">
     <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
         <div class="col-sm-12">
-            <h3>Update Khách Hàng</h3>
+            <h3>Customer Update</h3>
             <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
             <form action="#" th:action="@{/EditKh}" th:object="${khachhang}" method="post">
                 <input type="hidden" th:field="*{maKh}">
                 <div class="form-group">
-                    <label>tenKh</label>
-                    <input type="text" th:field="*{tenKh}" class="form-control" placeholder="tenKh">
+                    <label>Customer Name:</label>
+                    <i><input type="text" th:field="*{tenKh}" class="form-control" placeholder="Tên KH"></i>
                 </div>
                 <div class="form-group">
-                    <label>diaChi</label>
-                    <input type="text" th:field="*{diaChi}" class="form-control" placeholder="diaChi">
+                    <label>Address:</label>
+                    <i><input type="text" th:field="*{diaChi}" class="form-control" placeholder="Địa chỉ"></i>
                 </div>
                 <div class="form-group">
-                    <label>SDT</label>
-                    <input type="text" th:field="*{SDT}" class="form-control" placeholder="SDT">
+                    <label>Phone Number:</label>
+                    <i><input type="text" th:field="*{SDT}" class="form-control" placeholder="SĐT"></i>
                 </div>
                 <div class="form-group">
-                    <label>soTK</label>
-                    <input type="text" th:field="*{soTK}" class="form-control" placeholder="soTK">
+                    <label>ID:</label>
+                    <i><input type="text" th:field="*{soTK}" class="form-control" placeholder="Số TK"></i>
                 </div>
                 <div class="form-group">
-                    <label>soDuTK</label>
-                    <input type="number" th:field="*{soDuTK}" class="form-control" placeholder="soDuTK">
+                    <label>Balance:</label>
+                    <i><input type="number" th:field="*{soDuTK}" class="form-control" placeholder="Số dư TK"></i>
                 </div>
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>
