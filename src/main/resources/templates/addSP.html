@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Product</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body style="background-color:whitesmoke;">
-<div id="top-header">
-    <div class="container">
-        <ul class="header-links pull-right">
-            <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="profile.html"><i class="fa fa-user-o"></i>My Account</a></li>
-            <li><a href="login.html"><i class="fa fa-sign-out"></i> Log out</a></li>
-        </ul>
-    </div>
-</div>
+<body>
+<h1 style="text-align: center">Thêm Sản Phẩm</h1>
 <div class="container" style="margin-top: 50px;">
     <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
         <div class="col-sm-12">
-            <h3>Add Product</h3>
+            <h3>Thêm Sản Phẩm</h3>
             <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
             <form action="#" th:action="@{/addSP}" th:object="${sanpham}" method="post">
                 <div class="form-group">
-                    <label>Product's Name</label>
-                    <i><input type="text" th:field="*{tenSp}" class="form-control" placeholder="Product's name"></i>
+                    <label>TenSp</label>
+                    <input type="text" th:field="*{tenSp}" class="form-control" placeholder="TenSP">
                 </div>
                 <div class="form-group">
-                    <label>Specifications</label>
-                    <i><input type="number" th:field="*{quyCach}" class="form-control" placeholder="Specifications"></i>
+                    <label>quycach</label>
+                    <input type="number" th:field="*{quyCach}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Cost</label>
-                    <i><input type="number" th:field="*{giaGoc}" class="form-control" placeholder="Cost"></i>
+                    <label>giagoc</label>
+                    <input type="number" th:field="*{giaGoc}" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">Add Product</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
 
             </form>
         </div>
     </div>
 </div>
-
-<footer id="footer">
-    <div id="bottom-footer" class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <ul class="footer-payments">
-                        <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                        <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-                    </ul>
-                    <span class="copyright">
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website was created by student with great love</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>
 </html>
