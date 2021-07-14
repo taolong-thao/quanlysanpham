@@ -15,12 +15,13 @@ public class SanPhamUtils {
     public static String SUCCESS = "sucesss";
     public static String Manager = "quanly";
 
-    public static void WriteFile(HttpServletResponse response, List<SanPham> list, Long a) throws IOException {
+
+    public static void WriteFile(HttpServletResponse response, List<SanPham> list, Long total) throws IOException {
+
         response.setContentType("text/plain");
-        response.setHeader("Content-Disposition", "attachment;filename=HoaDon.txt");
+        response.setHeader("Content-Disposition", "attachment;filename=myFile.txt");
         ServletOutputStream out = response.getOutputStream();
         out.println(String.valueOf(list));
-        out.println(a);
         out.flush();
         out.close();
     }

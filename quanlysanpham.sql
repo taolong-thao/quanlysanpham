@@ -1,9 +1,8 @@
 
 create database QuanLyBanHang;
 use QuanLyBanHang;
-
-drop database quanlybanhang;
-create TABLE SANPHAM 
+-- drop database quanlybanhang;
+create TABLE SANPHAM
 (
 	MASP VARCHAR(10) primary key,
 	TENSP nvarchar(30),
@@ -11,8 +10,13 @@ create TABLE SANPHAM
     GIAGOC FLOAT,
     image varchar(50)
 );
+<<<<<<< HEAD
 drop table sanpham;
 create TABLE KHACHHANG 
+=======
+-- drop table taikhoan;
+create TABLE KHACHHANG
+>>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
 	MAKH VARCHAR(10),
     TENKH nvarchar(30),
@@ -21,12 +25,17 @@ create TABLE KHACHHANG
 	PASS varchar(10),
     SOTAIKHOAN varchar(100) unique,
     SODUTK FLOAT,
-    PRIMARY KEY (MAKH) 
+    PRIMARY KEY (MAKH)
 );
 
 
+<<<<<<< HEAD
 select* from khachhang;
 create TABLE HOADON 
+=======
+-- select* from khachhang;
+create TABLE HOADON
+>>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
 	MAHD VARCHAR(10) primary key,
     MAKH VARCHAR(10),
@@ -37,8 +46,12 @@ create TABLE HOADON
     NGAYLAP DATE,
     TONGTIEN FLOAT
 );
+<<<<<<< HEAD
 drop table hoadon;
 create TABLE CHITIETHOADON 
+=======
+create TABLE CHITIETHOADON
+>>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
 	MA_CTHD VARCHAR(10) primary key,
 	MAHD VARCHAR(10),
@@ -47,12 +60,12 @@ create TABLE CHITIETHOADON
     SOLUONG INT,
     THANHTIEN FLOAT
 );
-create TABLE LOAICHIETKHAU 
+create TABLE LOAICHIETKHAU
 (
 	MALOAICK VARCHAR(10) primary key,
     TENLOAICK nvarchar(30)
 );
-create TABLE CHIETKHAU 
+create TABLE CHIETKHAU
 (
 	MACK VARCHAR(10) primary key,
     MALOAICK varchar(10),
@@ -72,11 +85,10 @@ create TABLE CHIETKHAU
 -- ALTER TABLE CHITIETHOADON
 -- ADD CONSTRAINT fk_SP_CTHD FOREIGN KEY (MASP) REFERENCES SANPHAM(MASP);
 -- ALTER TABLE CHITIETHOADON
--- ADD CONSTRAINT fk_HD_CTHD FOREIGN KEY (MAHD) REFERENCES HOADON(MAHD);
-
-
+-- ADD CONSTRAINT fk_HD_CTHD FOREIGN KEY (MAHD) REFERENCES HOADON(MAHD)
 insert into KHACHHANG
 values
+<<<<<<< HEAD
 ('admin',null,null,null,'0000',0),
 ('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','123456789123',20000000),
 ('admin',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','admin','123456789123',20000000),
@@ -90,7 +102,12 @@ values
 ('KH009',N'Lại Tấn Phát',N'125/13 Nguyễn Sơn, Q.Tân Phú, TPHCM','0933918563','11456789127',500000),
 ('KH010',N'Hoàng Ngọc Thái Bảo',N'89 Trần Bình Trọng, PHCM','0167328553','173456789127',7000000),
 ('KH011',N'Phạm Hoàng Bảo',N'1754 Nguyễn Văn Linh, Q7, TPHCM','0913683616','153456789127',8000000);
+=======
+('123',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','09039914135','123','123456789123',20000000),
+('admin',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','admin','12s334',20000000);
+>>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 
+select * from khachhang;
 insert into TAIKHOAN
 values('admin','admin','admin'),
 ('KH001','001','001'),
@@ -134,18 +151,18 @@ values('SP001',N'Phân bón A',100,500,null),
 
 insert into CHIETKHAU
 values
-('CK001','L1',N'Lễ Noel','24/12',0.5),
-('CK002','L1',N'Ngày thành lập công ty','1/1',3),
-('CK003','L1',N'Giải phóng miền Nam','30/4',2),
-('CK004','L1',N'Ngày Quốc Khánh','2/9',2),
-('CK005','L1',N'Lễ Tình Nhân','14/2',0.5),
-('CK006','L1',N'Quốc tế phụ nữ','8/3',1),
-('CK007','L1',N'Quốc tế lao động','1/2',0.5),
-('CK008','L2',N'Hóa đơn số lượng trên 10',null,1),
-('CK009','L2',N'Hóa đơn số lượng trên 20',null,2),
-('CK010','L2',N'Hóa đơn số lượng trên 30',null,3),
-('CK011','L2',N'Hóa đơn số lượng trên 40',null,4),
-('CK012','L2',N'Hóa đơn số lượng trên 50',null,5),
+('CK001','L1',N'Lễ Noel','24/12',10),
+('CK002','L1',N'Ngày thành lập công ty','1/1',50),
+('CK003','L1',N'Giải phóng miền Nam','30/4',10),
+('CK004','L1',N'Ngày Quốc Khánh','2/9',20),
+('CK005','L1',N'Lễ Tình Nhân','14/2',10),
+('CK006','L1',N'Quốc tế phụ nữ','8/3',15),
+('CK007','L1',N'Quốc tế lao động','1/2',15),
+('CK008','L2',N'Hóa đơn số lượng trên 10',null,10),
+('CK009','L2',N'Hóa đơn số lượng trên 20',null,20),
+('CK010','L2',N'Hóa đơn số lượng trên 30',null,30),
+('CK011','L2',N'Hóa đơn số lượng trên 40',null,40),
+('CK012','L2',N'Hóa đơn số lượng trên 50',null,50),
 ('CK013','L2',N'Bình thường',null,0);
 
 insert into CHITIETHOADON

@@ -1,7 +1,6 @@
 package demo.quanlysanpham.Controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,32 +13,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mysql.cj.util.StringUtils;
 
 import demo.quanlysanpham.Model.KhachHang;
-import demo.quanlysanpham.Model.LichBanHang;
 import demo.quanlysanpham.Model.SanPham;
 import demo.quanlysanpham.Services.KhachHangServices;
-import demo.quanlysanpham.Services.LichBanService;
 import demo.quanlysanpham.Services.SanPhamServices;
 import demo.quanlysanpham.utils.SanPhamUtils;
 
 /**
- *
  * @author dfean
  */
 @Controller
 public class LoginController {
     private SanPhamServices sanPhamServices;
     private KhachHangServices khachHangServices;
-    private LichBanService lichBanService;
 
-    public LoginController(SanPhamServices sanPhamServices, KhachHangServices khachHangServices, LichBanService lichBanService) {
+    public LoginController(SanPhamServices sanPhamServices, KhachHangServices khachHangServices) {
         this.sanPhamServices = sanPhamServices;
         this.khachHangServices = khachHangServices;
-        this.lichBanService = lichBanService;
     }
 
     @GetMapping(value = "/ViewIndex")
@@ -60,48 +53,24 @@ public class LoginController {
     }
 
     @PostMapping("/ViewIndex")
-    public String oder(@ModelAttribute("sanpham") SanPham sanPham, Model model, HttpServletResponse response, RedirectAttributes redirectAttributes, HttpSession session) throws IOException {
+    public String oder(@ModelAttribute("sanpham") SanPham sanPham, Model model, HttpServletResponse response) throws IOException {
         if (!StringUtils.isNullOrEmpty(sanPham.getMaSp())) {
             List<SanPham> list = new ArrayList<>();
             String[] str = sanPham.getMaSp().split(",");
             Long total = 0L;
-            String tensp = "";
-            String masp = "";
-            Long giagoc = 0L;
-            LichBanHang lich = new LichBanHang();
-            LocalDate localDate = LocalDate.now();
-            Object e = session.getAttribute("Name");
-            String name = e.toString();
-            SanPhamUtils.WriteFile(response, list, total);
-            lich.setNgayLap(localDate.toString());
-            lich.setMaKh(name);
             for (String t : str) {
                 SanPham sp = new SanPham();
                 sp = sanPhamServices.find(t);
-                total += sp.getGiaGoc();
-                masp = sp.getMaSp();
-                tensp = sp.getTenSp();
-                giagoc = sp.getGiaGoc();
-                lich.setMaSp(masp);
-                lich.setTenSp(tensp);
-                lich.setGiaGoc(giagoc);
                 list.add(sp);
             }
-            total = (sanPham.getGiaGoc() / sanPham.getQuyCach());
-            lich.setTongTien(total);
-            lichBanService.Save(lich);
-            redirectAttributes.addFlashAttribute("error", "Mua Sản Phẩm Thành Công!");
+            SanPhamUtils.WriteFile(response, list, total);
+            model.addAttribute("error", "Mua Sản Phẩm Thành Công!");
         } else {
             model.addAttribute("error", "Bạn chưa chọn sản phẩm!");
         }
         return SanPhamUtils.REDIRECT + "ViewIndex";
     }
 
-    @GetMapping("ViewLich")
-    public String viewLich(Model model) {
-        model.addAttribute("hoadon", lichBanService.GetAll());
-        return "ViewLich";
-    }
 
     @GetMapping("/login")
     public String login() {
