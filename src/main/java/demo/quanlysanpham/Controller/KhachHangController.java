@@ -64,10 +64,8 @@ public class KhachHangController {
                     .limit(targetStringLength)
                     .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                     .toString();
-//            khachHang.setMaKh("KH0" + SanPhamUtils.idKh++);
             khachHang.setSoTK(generatedString);
-            KhachHang a = new KhachHang(null, "123", "123", "123213", "123213", "12321", 3232L);
-            khachHangServices.saveKH(a);
+            khachHangServices.saveKH(khachHang);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
             return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }

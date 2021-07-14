@@ -10,13 +10,8 @@ create TABLE SANPHAM
     GIAGOC FLOAT,
     image varchar(50)
 );
-<<<<<<< HEAD
 drop table sanpham;
 create TABLE KHACHHANG
-=======
--- drop table taikhoan;
-create TABLE KHACHHANG
->>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
 	MAKH VARCHAR(10),
     TENKH nvarchar(30),
@@ -29,11 +24,6 @@ create TABLE KHACHHANG
 );
 
 
-<<<<<<< HEAD
-select* from khachhang;
-create TABLE HOADON
-=======
--- select* from khachhang;
 create TABLE HOADON
 >>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
@@ -46,12 +36,7 @@ create TABLE HOADON
     NGAYLAP DATE,
     TONGTIEN FLOAT
 );
-<<<<<<< HEAD
-drop table hoadon;
 create TABLE CHITIETHOADON
-=======
-create TABLE CHITIETHOADON
->>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
 	MA_CTHD VARCHAR(10) primary key,
 	MAHD VARCHAR(10),
@@ -88,24 +73,17 @@ create TABLE CHIETKHAU
 -- ADD CONSTRAINT fk_HD_CTHD FOREIGN KEY (MAHD) REFERENCES HOADON(MAHD)
 insert into KHACHHANG
 values
-<<<<<<< HEAD
-('admin',null,null,null,'0000',0),
-('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','123456789123',20000000),
-('admin',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','admin','123456789123',20000000),
-('KH002',N'Dương Lệ Hương',N'13/5 Nguyễn Thị Thập, Q7, TPHCM','012605988','123456789127',1000000),
-('KH003',N'Nguyễn Hoàng Long',N'1083 CMT8, QTB, TPHCM','0987655231','123456789128',500000),
-('KH004',N'Hoàng Hải Yến',N'139 Bành Văn Trân, TPHCM','0989326115','123456789129',3000000),
-('KH005',N'Hoàng Văn Lương',N'144 Nguyễn Trãi, Q5, TPHCM','0785918442','123456781127',12000),
-('KH006',N'Trần Minh Tuấn',N'238/10 Hai Bà Trưng, Q1, TPHCM','077227719','123456782127',1500000),
-('KH007',N'Trần Lê Đại Tâm',N'18 Lê Thúc Hoạch, Q. Tân Phú, TPHCM','0129163595','124456789127',1700000),
-('KH008',N'Đinh Ngọc Diệp',N'30/5/3 Lê Đại Hành, Q10, TPHCM','0946263152','123456587127',1800000),
-('KH009',N'Lại Tấn Phát',N'125/13 Nguyễn Sơn, Q.Tân Phú, TPHCM','0933918563','11456789127',500000),
-('KH010',N'Hoàng Ngọc Thái Bảo',N'89 Trần Bình Trọng, PHCM','0167328553','173456789127',7000000),
-('KH011',N'Phạm Hoàng Bảo',N'1754 Nguyễn Văn Linh, Q7, TPHCM','0913683616','153456789127',8000000);
-=======
-('123',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','09039914135','123','123456789123',20000000),
-('admin',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','admin','12s334',20000000);
->>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
+('admin',null,null,null,'admin','1111',0),
+('KH002',N'Dương Lệ Hương',N'13/5 Nguyễn Thị Thập, Q7, TPHCM','012605988','123','123456789127',1000000),
+('KH003',N'Nguyễn Hoàng Long',N'1083 CMT8, QTB, TPHCM','0987655231','123','123456789128',500000),
+('KH004',N'Hoàng Hải Yến',N'139 Bành Văn Trân, TPHCM','0989326115','123','123456789129',3000000),
+('KH005',N'Hoàng Văn Lương',N'144 Nguyễn Trãi, Q5, TPHCM','0785918442','123','123456781127',12000),
+('KH006',N'Trần Minh Tuấn',N'238/10 Hai Bà Trưng, Q1, TPHCM','077227719','123','123456782127',1500000),
+('KH007',N'Trần Lê Đại Tâm',N'18 Lê Thúc Hoạch, Q. Tân Phú, TPHCM','0129163595','123','124456789127',1700000),
+('KH008',N'Đinh Ngọc Diệp',N'30/5/3 Lê Đại Hành, Q10, TPHCM','0946263152','123','123456587127',1800000),
+('KH009',N'Lại Tấn Phát',N'125/13 Nguyễn Sơn, Q.Tân Phú, TPHCM','0933918563','123','11456789127',500000),
+('KH010',N'Hoàng Ngọc Thái Bảo',N'89 Trần Bình Trọng, PHCM','0167328553','123','173456789127',7000000),
+('KH011',N'Phạm Hoàng Bảo',N'1754 Nguyễn Văn Linh, Q7, TPHCM','0913683616','123','153456789127',8000000);
 
 select * from khachhang;
 insert into TAIKHOAN
