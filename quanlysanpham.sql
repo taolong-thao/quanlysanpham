@@ -115,18 +115,18 @@ values('SP001',N'Phân bón A',100,500),
 
 insert into CHIETKHAU
 values
-('CK001','L1',N'Lễ Noel','24/12',0.5),
-('CK002','L1',N'Ngày thành lập công ty','1/1',3),
-('CK003','L1',N'Giải phóng miền Nam','30/4',2),
-('CK004','L1',N'Ngày Quốc Khánh','2/9',2),
-('CK005','L1',N'Lễ Tình Nhân','14/2',0.5),
-('CK006','L1',N'Quốc tế phụ nữ','8/3',1),
-('CK007','L1',N'Quốc tế lao động','1/2',0.5),
-('CK008','L2',N'Hóa đơn số lượng trên 10',null,1),
-('CK009','L2',N'Hóa đơn số lượng trên 20',null,2),
-('CK010','L2',N'Hóa đơn số lượng trên 30',null,3),
-('CK011','L2',N'Hóa đơn số lượng trên 40',null,4),
-('CK012','L2',N'Hóa đơn số lượng trên 50',null,5),
+('CK001','L1',N'Lễ Noel','24/12',10),
+('CK002','L1',N'Ngày thành lập công ty','1/1',50),
+('CK003','L1',N'Giải phóng miền Nam','30/4',10),
+('CK004','L1',N'Ngày Quốc Khánh','2/9',20),
+('CK005','L1',N'Lễ Tình Nhân','14/2',10),
+('CK006','L1',N'Quốc tế phụ nữ','8/3',15),
+('CK007','L1',N'Quốc tế lao động','1/2',15),
+('CK008','L2',N'Hóa đơn số lượng trên 10',null,10),
+('CK009','L2',N'Hóa đơn số lượng trên 20',null,20),
+('CK010','L2',N'Hóa đơn số lượng trên 30',null,30),
+('CK011','L2',N'Hóa đơn số lượng trên 40',null,40),
+('CK012','L2',N'Hóa đơn số lượng trên 50',null,50),
 ('CK013','L2',N'Bình thường',null,0);
 
 insert into CHITIETHOADON
