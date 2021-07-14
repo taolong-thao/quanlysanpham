@@ -13,7 +13,8 @@
         <div class="col-sm-12">
             <h3>Update Sản Phẩm</h3>
             <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
-            <form action="#" th:action="@{/UpdateSP}" th:object="${sanpham}" method="post">
+            <form action="#" th:action="@{/UpdateSP}" th:object="${sanpham}" method="post"
+                  enctype="multipart/form-data">
                 <input type="hidden" th:field="*{maSp}">
                 <div class="form-group">
                     <label>TenSp</label>

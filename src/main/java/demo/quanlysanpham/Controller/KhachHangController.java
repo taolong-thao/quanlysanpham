@@ -1,7 +1,11 @@
 package demo.quanlysanpham.Controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -125,12 +129,21 @@ public class KhachHangController {
     }
 
     @PostMapping("/addtien")
-    public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh) {
+    public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh, HttpServletResponse response) throws IOException {
         KhachHang khachHang = khachHangServices.find(maKh);
         if (khachHang != null) {
             Long temp = khachHang.getSoDuTK() + sotien;
             khachHang.setSoDuTK(temp);
             khachHangServices.saveKH(khachHang);
+            response.setContentType("text/plain");
+            response.setHeader("Content-Disposition", "attachment;filename=PhieuThu.txt");
+            ServletOutputStream out = response.getOutputStream();
+            out.println("Mã Khách Hàng:");
+            out.println(maKh);
+            out.println(sotien);
+            out.println(temp);
+            out.flush();
+            out.close();
         }
 
         return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;

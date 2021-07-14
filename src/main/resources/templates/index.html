@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="eng" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/style.css">
     <title>Title</title>
 </head>
+
 <body>
 <h1 style="text-align: center">Phân bón</h1>
 <p th:text="${session.Name}"></p>
@@ -13,10 +17,12 @@
 <a th:href="@{/logout}" th:text="${logout}"></a>
 <div class="container" style="margin-top: 50px;">
     <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
-        <a th:style="${login}" th:href="@{/login}">Login</a>
-        <div><a th:href="@{/ViewIndex}"> Xem Sản Phẩm</a>
-            <a th:href="@{/search}"> Tìm Kiếm Sản Phẩm</a>
+        <div class="col-sm-12">
+            <a class="btn btn-primary" th:style="${login}" th:href="@{/login}">Login</a>
+            <a class="btn btn-primary" th:href="@{/ViewIndex}"> Xem Sản Phẩm</a>
+            <a class="btn btn-primary" th:href="@{/search}"> Tìm Kiếm Sản Phẩm</a>
         </div>
+
     </div>
 </div>
 <div>

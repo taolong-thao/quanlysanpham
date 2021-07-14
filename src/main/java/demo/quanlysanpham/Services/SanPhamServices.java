@@ -3,8 +3,6 @@ package demo.quanlysanpham.Services;
 import java.util.List;
 import java.util.Optional;
 
-import demo.quanlysanpham.Repository.KhachHangRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import demo.quanlysanpham.Model.SanPham;

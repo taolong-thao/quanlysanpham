@@ -8,9 +8,10 @@ create TABLE SANPHAM
 	MASP VARCHAR(10) primary key,
 	TENSP nvarchar(30),
     QUYCACH INT,
-    GIAGOC FLOAT
+    GIAGOC FLOAT,
+    image varchar(50)
 );
-drop table taikhoan;
+drop table sanpham;
 create TABLE KHACHHANG 
 (
 	MAKH VARCHAR(10),
@@ -22,14 +23,21 @@ create TABLE KHACHHANG
     SODUTK FLOAT,
     PRIMARY KEY (MAKH) 
 );
+
+
 select* from khachhang;
 create TABLE HOADON 
 (
 	MAHD VARCHAR(10) primary key,
     MAKH VARCHAR(10),
+    MASP VARCHAR(10),
+    TENSP NVARCHAR(30),
+    GIAGOC FLOAT,
+    GIADAILY float,
     NGAYLAP DATE,
     TONGTIEN FLOAT
 );
+drop table hoadon;
 create TABLE CHITIETHOADON 
 (
 	MA_CTHD VARCHAR(10) primary key,
@@ -71,6 +79,7 @@ insert into KHACHHANG
 values
 ('admin',null,null,null,'0000',0),
 ('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','123456789123',20000000),
+('admin',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','admin','123456789123',20000000),
 ('KH002',N'Dương Lệ Hương',N'13/5 Nguyễn Thị Thập, Q7, TPHCM','012605988','123456789127',1000000),
 ('KH003',N'Nguyễn Hoàng Long',N'1083 CMT8, QTB, TPHCM','0987655231','123456789128',500000),
 ('KH004',N'Hoàng Hải Yến',N'139 Bành Văn Trân, TPHCM','0989326115','123456789129',3000000),
@@ -114,7 +123,7 @@ values('L1',N'Chiết khấu Khuyến mại' ),
 	('L2',N'Chiết khấu Thương mại');
 
 insert into SANPHAM
-values('SP001',N'Phân bón A',100,500),
+values('SP001',N'Phân bón A',100,500,null),
 	('SP002',N'Phân bón A',200,1000),
     ('SP003',N'Phân bón A',500,5000),
 	('SP004',N'Phân bón B',100,200),

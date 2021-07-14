@@ -40,8 +40,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <p style="color: red" th:text="${empty}">Checked Empty</p>
-                <p style="color: green" th:text="${error}">Mua Sản Phẩm Thành Công</p>
+                <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+                <div class="alert alert-danger" role="alert" th:text="${success}" th:if="${success}"></div>
                 <button style="text-align: right" th:style="${hidden}" th:text="${buy}" type="submit"></button>
 
             </form>

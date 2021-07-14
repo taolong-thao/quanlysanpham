@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <h3>Thêm Sản Phẩm</h3>
             <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
-            <form action="#" th:action="@{/addSP}" th:object="${sanpham}" method="post">
+            <form action="#" th:action="@{/addSP}" th:object="${sanpham}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>TenSp</label>
                     <input type="text" th:field="*{tenSp}" class="form-control" placeholder="TenSP">
@@ -26,6 +26,7 @@
                     <label>giagoc</label>
                     <input type="number" th:field="*{giaGoc}" class="form-control">
                 </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
 
             </form>

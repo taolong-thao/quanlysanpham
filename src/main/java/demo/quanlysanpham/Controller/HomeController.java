@@ -1,5 +1,6 @@
 package demo.quanlysanpham.Controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,8 @@ public class HomeController {
         this.sanPhamServices = sanPhamServices;
     }
 
+    private String fileUpload;
+
     @GetMapping(value = "/ViewSP")
     public String view(Model model) {
         List<SanPham> list = sanPhamServices.getAll();
@@ -43,12 +46,16 @@ public class HomeController {
     }
 
     @PostMapping(value = "/addSP")
-    public String savesp(@ModelAttribute("sanpham") SanPham sanPham, RedirectAttributes redirectAttributes) {
+    public String savesp(@ModelAttribute("sanpham") SanPham sanPham, RedirectAttributes redirectAttributes) throws IOException {
         if (sanPham.getTenSp() == null || sanPham.getQuyCach() == 0 || sanPham.getGiaGoc() == 0) {
             redirectAttributes.addFlashAttribute("error", "Thêm sản phẩm thất bại!");
             return SanPhamUtils.REDIRECT + "addSP";
         } else {
-            sanPhamServices.save(sanPham);
+            try {
+                sanPhamServices.save(sanPham);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm sản phẩm thành công!");
             return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
