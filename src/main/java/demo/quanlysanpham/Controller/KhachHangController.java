@@ -64,8 +64,10 @@ public class KhachHangController {
                     .limit(targetStringLength)
                     .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                     .toString();
+//            khachHang.setMaKh("KH0" + SanPhamUtils.idKh++);
             khachHang.setSoTK(generatedString);
-            khachHangServices.saveKH(khachHang);
+            KhachHang a = new KhachHang(null, "123", "123", "123213", "123213", "12321", 3232L);
+            khachHangServices.saveKH(a);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
             return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
@@ -132,15 +134,15 @@ public class KhachHangController {
     public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh, HttpServletResponse response) throws IOException {
         KhachHang khachHang = khachHangServices.find(maKh);
         if (khachHang != null) {
+            Long tien = sotien;
             Long temp = khachHang.getSoDuTK() + sotien;
             khachHang.setSoDuTK(temp);
             khachHangServices.saveKH(khachHang);
             response.setContentType("text/plain");
             response.setHeader("Content-Disposition", "attachment;filename=PhieuThu.txt");
             ServletOutputStream out = response.getOutputStream();
-            out.println("Mã Khách Hàng:");
-            out.println(maKh);
-            out.println(sotien);
+            out.println("Mã Khách Hàng :" + maKh);
+            out.println(tien);
             out.println(temp);
             out.flush();
             out.close();

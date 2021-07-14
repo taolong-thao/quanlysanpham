@@ -15,10 +15,10 @@
             <h3>Thêm Khách Hàng</h3>
             <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
             <form action="#" th:action="@{/addKH}" th:object="${khachhang}" method="post">
-                <!--    <div class="form-group">-->
-                <!--        <label>maKh</label>-->
-                <!--        <input type="text" th:field="*{maKh}" class="form-control" placeholder="maKh">-->
-                <!--    </div>-->
+                <div class="form-group">
+                    <label>maKh</label>
+                    <input type="hidden" th:field="*{maKh}" class="form-control" placeholder="maKh">
+                </div>
                 <div class="form-group">
                     <label>tenKh</label>
                     <input type="text" th:field="*{tenKh}" class="form-control" placeholder="tenKh">

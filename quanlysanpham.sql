@@ -12,7 +12,7 @@ create TABLE SANPHAM
 );
 <<<<<<< HEAD
 drop table sanpham;
-create TABLE KHACHHANG 
+create TABLE KHACHHANG
 =======
 -- drop table taikhoan;
 create TABLE KHACHHANG
@@ -31,7 +31,7 @@ create TABLE KHACHHANG
 
 <<<<<<< HEAD
 select* from khachhang;
-create TABLE HOADON 
+create TABLE HOADON
 =======
 -- select* from khachhang;
 create TABLE HOADON
@@ -48,7 +48,7 @@ create TABLE HOADON
 );
 <<<<<<< HEAD
 drop table hoadon;
-create TABLE CHITIETHOADON 
+create TABLE CHITIETHOADON
 =======
 create TABLE CHITIETHOADON
 >>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60

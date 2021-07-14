@@ -53,16 +53,18 @@ public class LoginController {
     }
 
     @PostMapping("/ViewIndex")
-    public String oder(@ModelAttribute("sanpham") SanPham sanPham, Model model, HttpServletResponse response) throws IOException {
+    public String oder(@RequestParam("soluong") int soluong, @ModelAttribute("sanpham") SanPham sanPham, Model model, HttpServletResponse response) throws IOException {
         if (!StringUtils.isNullOrEmpty(sanPham.getMaSp())) {
             List<SanPham> list = new ArrayList<>();
             String[] str = sanPham.getMaSp().split(",");
+
             Long total = 0L;
             for (String t : str) {
-                SanPham sp = new SanPham();
-                sp = sanPhamServices.find(t);
+                SanPham sp = sanPhamServices.find(t);
                 list.add(sp);
+                total += sp.getGiaGoc() * sp.getQuyCach() * soluong;
             }
+
             SanPhamUtils.WriteFile(response, list, total);
             model.addAttribute("error", "Mua Sản Phẩm Thành Công!");
         } else {
@@ -79,10 +81,10 @@ public class LoginController {
 
     @GetMapping("quanly")
     public String quanly(HttpSession session) {
-        if (session.getAttribute("admin") == "admin") {
-            return "quanly";
-        }
-        return "login";
+//        if (session.getAttribute("admin") == "admin") {
+//            return "quanly";
+//        }
+        return "quanly";
     }
 
     @PostMapping("/check")

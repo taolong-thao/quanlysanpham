@@ -37,7 +37,7 @@ public class KhachHang implements Serializable {
             strategy = "demo.quanlysanpham.Model.StringPrefixedSequenceIdGenerator",
             parameters = {
                     @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "KH"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "KH0"),
                     @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d")})
     @Column(name = "MAKH")
     private String maKh;
