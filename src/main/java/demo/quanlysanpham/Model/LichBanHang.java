@@ -16,11 +16,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
  * @author dfean
  */
 @Entity
-@Table(name = "hoadon")
+@Table(name = "lichbanhang")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,17 +27,10 @@ import lombok.ToString;
 public class LichBanHang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MAKH")
-    @GenericGenerator(
-            name = "MAKH",
-            strategy = "demo.quanlysanpham.Model.StringPrefixedSequenceIdGenerator",
-            parameters = {
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "HD"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d")})
-    @Column(name = "MAHD")
-    private String maHd;
     @Column(name = "MAKH")
     private String maKh;
+    @Column(name = "MAHD")
+    private String maHd;
     @Column(name = "MASP")
     private String maSp;
     @Column(name = "TENSP")
@@ -51,6 +43,6 @@ public class LichBanHang {
     private String ngayLap;
     @Column(name = "TONGTIEN")
     private Long tongTien;
-    
+
 
 }

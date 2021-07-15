@@ -50,23 +50,30 @@ public class KhachHangController {
 
     @PostMapping("/addKH")
     public String saveKH(@ModelAttribute("khachhang") KhachHang khachHang, RedirectAttributes redirectAttributes) {
-        if (khachHang.getTenKh() == null || khachHang.getDiaChi() == null || khachHang.getSDT() == null || khachHang.getSoDuTK() == null || khachHang.getPassWord() == null) {
-            redirectAttributes.addFlashAttribute(Error, "Thêm Khách hàng thất bại");
-            return SanPhamUtils.REDIRECT + "addKH";
-        } else {
-            int leftLimit = 48;
-            int rightLimit = 122;
-            int targetStringLength = 10;
-            Random random = new Random();
 
-            String generatedString = random.ints(leftLimit, rightLimit + 1)
-                    .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                    .limit(targetStringLength)
-                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                    .toString();
-            khachHang.setSoTK(generatedString);
-            khachHangServices.saveKH(khachHang);
-            redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
+        try {
+            if (khachHang.getTenKh() == null || khachHang.getDiaChi() == null || khachHang.getSDT() == null || khachHang.getSoDuTK() == null || khachHang.getPassWord() == null) {
+                redirectAttributes.addFlashAttribute(Error, "Thêm Khách hàng thất bại");
+                return SanPhamUtils.REDIRECT + "addKH";
+            } else {
+                int leftLimit = 48;
+                int rightLimit = 122;
+                int targetStringLength = 10;
+                Random random = new Random();
+
+                String generatedString = random.ints(leftLimit, rightLimit + 1)
+                        .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                        .limit(targetStringLength)
+                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                        .toString();
+                khachHang.setMaKh("KH00" + SanPhamUtils.countKH++);
+                khachHang.setSoTK(generatedString);
+                khachHangServices.saveKH(khachHang);
+                redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
+                return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
         }
     }
@@ -132,7 +139,6 @@ public class KhachHangController {
     public String saveMoney(@RequestParam("sotien") long sotien, @ModelAttribute("maKh") String maKh, HttpServletResponse response) throws IOException {
         KhachHang khachHang = khachHangServices.find(maKh);
         if (khachHang != null) {
-            Long tien = sotien;
             Long temp = khachHang.getSoDuTK() + sotien;
             khachHang.setSoDuTK(temp);
             khachHangServices.saveKH(khachHang);
@@ -140,7 +146,7 @@ public class KhachHangController {
             response.setHeader("Content-Disposition", "attachment;filename=PhieuThu.txt");
             ServletOutputStream out = response.getOutputStream();
             out.println("Mã Khách Hàng :" + maKh);
-            out.println(tien);
+            out.println(sotien);
             out.println(temp);
             out.flush();
             out.close();

@@ -3,6 +3,8 @@ package demo.quanlysanpham.Controller;
 import java.io.IOException;
 import java.util.List;
 
+import demo.quanlysanpham.Model.LichBanHang;
+import demo.quanlysanpham.Services.LichBanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +25,11 @@ import demo.quanlysanpham.utils.SanPhamUtils;
 public class HomeController {
 
     private SanPhamServices sanPhamServices;
+    private LichBanService lichBanService;
 
-    public HomeController(SanPhamServices sanPhamServices) {
+    public HomeController(SanPhamServices sanPhamServices, LichBanService lichBanService) {
         this.sanPhamServices = sanPhamServices;
+        this.lichBanService = lichBanService;
     }
 
     private String fileUpload;
@@ -52,6 +56,7 @@ public class HomeController {
             return SanPhamUtils.REDIRECT + "addSP";
         } else {
             try {
+                sanPham.setMaSp("SP0" + SanPhamUtils.countSP++);
                 sanPhamServices.save(sanPham);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -103,5 +108,12 @@ public class HomeController {
 
         model.addAttribute(SanPhamUtils.SAN_PHAM, sanPhamServices.find(masp));
         return "search";
+    }
+
+    @GetMapping("/ViewLich")
+    public String viewlich(Model model) {
+        List<LichBanHang> list = lichBanService.GetAll();
+        model.addAttribute(SanPhamUtils.hoadon, list);
+        return "ViewLich";
     }
 }

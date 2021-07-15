@@ -32,16 +32,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SanPham implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MASP")
-    @GenericGenerator(
-            name = "MASP",
-            strategy = "demo.quanlysanpham.Model.StringPrefixedSequenceIdGenerator",
-            parameters = {
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "SP"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
 
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MASP")
+//    @GenericGenerator(
+//            name = "MASP",
+//            strategy = "demo.quanlysanpham.Model.StringPrefixedSequenceIdGenerator",
+//            parameters = {
+//                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "50"),
+//                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "SP"),
+//                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")})
+    @Id
     @Column(name = "MASP")
     private String maSp;
     @Column(name = "TENSP")

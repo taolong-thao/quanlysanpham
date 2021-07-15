@@ -1,41 +1,36 @@
 
-create database QuanLyBanHang;
-use QuanLyBanHang;
--- drop database quanlybanhang;
+create database QuanLyBanHang1;
+use QuanLyBanHang1;
+
+
 create TABLE SANPHAM
 (
 	MASP VARCHAR(10) primary key,
 	TENSP nvarchar(30),
     QUYCACH INT,
-    GIAGOC FLOAT,
-    image varchar(50)
+    GIAGOC FLOAT
 );
-drop table sanpham;
+
 create TABLE KHACHHANG
 (
 	MAKH VARCHAR(10),
     TENKH nvarchar(30),
     DIACHI nvarchar(40),
-	SDT VARCHAR(15)unique,
+	SDT VARCHAR(15),
 	PASS varchar(10),
-    SOTAIKHOAN varchar(100) unique,
+    SOTAIKHOAN varchar(100) ,
     SODUTK FLOAT,
     PRIMARY KEY (MAKH)
 );
 
-
 create TABLE HOADON
->>>>>>> 5611ce397d9c77eaf8b6949542814e4a109ebf60
 (
 	MAHD VARCHAR(10) primary key,
     MAKH VARCHAR(10),
-    MASP VARCHAR(10),
-    TENSP NVARCHAR(30),
-    GIAGOC FLOAT,
-    GIADAILY float,
     NGAYLAP DATE,
     TONGTIEN FLOAT
 );
+
 create TABLE CHITIETHOADON
 (
 	MA_CTHD VARCHAR(10) primary key,
@@ -58,7 +53,23 @@ create TABLE CHIETKHAU
     NGAYQUYDINH varchar(10),
     CHIETKHAU FLOAT
 );
+create TABLE lichbanhang
+(
+	MAKH VARCHAR(10) primary key,
+	MAHD VARCHAR(10),
+    MASP VARCHAR(10),
+    TENSP nVARCHAR(50),
+    GiAGOC float,
+    GIADAILY float,
+    NGAYLAP VARCHAR(20),
+    TONGTIEN float
+);
 
+insert into lichbanhang
+values('KH001','HDOO1','SP001',N'Phân bón B',10000,9000,'15-6-2021',12000),
+('KH003','HDOO2','SP002',N'Phân bón A',10000,9000,'13-7-2021',12000),
+('KH004','HDOO3','SP004',N'Phân bón C',10000,9000,'14-7-2021',12000),
+('KH005','HDOO4','SP002',N'Phân bón C',10000,9000,'15-7-2021',12000);
 -- ALTER TABLE TAIKHOAN
 -- ADD CONSTRAINT fk_TK_KH FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH);
 -- ALTER TABLE CHITIETHOADON
@@ -73,32 +84,19 @@ create TABLE CHIETKHAU
 -- ADD CONSTRAINT fk_HD_CTHD FOREIGN KEY (MAHD) REFERENCES HOADON(MAHD)
 insert into KHACHHANG
 values
-('admin',null,null,null,'admin','1111',0),
-('KH002',N'Dương Lệ Hương',N'13/5 Nguyễn Thị Thập, Q7, TPHCM','012605988','123','123456789127',1000000),
-('KH003',N'Nguyễn Hoàng Long',N'1083 CMT8, QTB, TPHCM','0987655231','123','123456789128',500000),
-('KH004',N'Hoàng Hải Yến',N'139 Bành Văn Trân, TPHCM','0989326115','123','123456789129',3000000),
-('KH005',N'Hoàng Văn Lương',N'144 Nguyễn Trãi, Q5, TPHCM','0785918442','123','123456781127',12000),
-('KH006',N'Trần Minh Tuấn',N'238/10 Hai Bà Trưng, Q1, TPHCM','077227719','123','123456782127',1500000),
-('KH007',N'Trần Lê Đại Tâm',N'18 Lê Thúc Hoạch, Q. Tân Phú, TPHCM','0129163595','123','124456789127',1700000),
-('KH008',N'Đinh Ngọc Diệp',N'30/5/3 Lê Đại Hành, Q10, TPHCM','0946263152','123','123456587127',1800000),
-('KH009',N'Lại Tấn Phát',N'125/13 Nguyễn Sơn, Q.Tân Phú, TPHCM','0933918563','123','11456789127',500000),
-('KH010',N'Hoàng Ngọc Thái Bảo',N'89 Trần Bình Trọng, PHCM','0167328553','123','173456789127',7000000),
-('KH011',N'Phạm Hoàng Bảo',N'1754 Nguyễn Văn Linh, Q7, TPHCM','0913683616','123','153456789127',8000000);
+('admin',N'Admin',N'Admin','123456','admin','10000',0),
+('KH001',N'Nguyễn Quỳnh Gia Thư',N'330 Trường Chinh, Q.Tân Bình, TPHCM','0903991415','1234','123456789123',20000000),
+('KH002',N'Dương Lệ Hương',N'13/5 Nguyễn Thị Thập, Q7, TPHCM','012605988','1234','123456789127',1000000),
+('KH003',N'Nguyễn Hoàng Long',N'1083 CMT8, QTB, TPHCM','0987655231','1234','123456789128',500000),
+('KH004',N'Hoàng Hải Yến',N'139 Bành Văn Trân, TPHCM','0989326115','1234','123456789129',3000000),
+('KH005',N'Hoàng Văn Lương',N'144 Nguyễn Trãi, Q5, TPHCM','0785918442','1234','123456781127',12000),
+('KH006',N'Trần Minh Tuấn',N'238/10 Hai Bà Trưng, Q1, TPHCM','077227719','1234','123456782127',1500000),
+('KH007',N'Trần Lê Đại Tâm',N'18 Lê Thúc Hoạch, Q. Tân Phú, TPHCM','0129163595','1234','124456789127',1700000),
+('KH008',N'Đinh Ngọc Diệp',N'30/5/3 Lê Đại Hành, Q10, TPHCM','0946263152','1234','123456587127',1800000),
+('KH009',N'Lại Tấn Phát',N'125/13 Nguyễn Sơn, Q.Tân Phú, TPHCM','0933918563','1234','11456789127',500000),
+('KH010',N'Hoàng Ngọc Thái Bảo',N'89 Trần Bình Trọng, PHCM','0167328553','1234','173456789127',7000000),
+('KH011',N'Phạm Hoàng Bảo',N'1754 Nguyễn Văn Linh, Q7, TPHCM','0913683616','1234','153456789127',8000000);
 
-select * from khachhang;
-insert into TAIKHOAN
-values('admin','admin','admin'),
-('KH001','001','001'),
-('KH002','002','002'),
-('KH003','003','003'),
-('KH004','004','004'),
-('KH005','005','005'),
-('KH006','006','006'),
-('KH007','007','007'),
-('KH008','008','008'),
-('KH009','009','009'),
-('KH010','010','010'),
-('KH011','011','011');
 
 insert into HOADON
 values('HD01','KH001','2021-01-01',0),
@@ -118,7 +116,7 @@ values('L1',N'Chiết khấu Khuyến mại' ),
 	('L2',N'Chiết khấu Thương mại');
 
 insert into SANPHAM
-values('SP001',N'Phân bón A',100,500,null),
+values('SP001',N'Phân bón A',100,500),
 	('SP002',N'Phân bón A',200,1000),
     ('SP003',N'Phân bón A',500,5000),
 	('SP004',N'Phân bón B',100,200),
