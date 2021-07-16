@@ -3,8 +3,6 @@ package demo.quanlysanpham.Controller;
 import java.io.IOException;
 import java.util.List;
 
-import demo.quanlysanpham.Model.LichBanHang;
-import demo.quanlysanpham.Services.LichBanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import demo.quanlysanpham.Model.LichBanHang;
 import demo.quanlysanpham.Model.SanPham;
+import demo.quanlysanpham.Services.LichBanService;
 import demo.quanlysanpham.Services.SanPhamServices;
 import demo.quanlysanpham.utils.SanPhamUtils;
 
@@ -62,7 +62,7 @@ public class HomeController {
                 e.printStackTrace();
             }
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm sản phẩm thành công!");
-            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.viewsp;
         }
     }
 
@@ -70,7 +70,7 @@ public class HomeController {
     public String del(@RequestParam("masp") String masp, RedirectAttributes redirectAttributes) {
         sanPhamServices.delete(masp);
         redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Xóa " + masp + " thành công!");
-        return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+        return SanPhamUtils.REDIRECT + SanPhamUtils.viewsp;
     }
 
     @GetMapping("/update/{masp}")
@@ -88,7 +88,7 @@ public class HomeController {
         } else {
             sanPhamServices.save(sanPham);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Update sản phẩm thành công!");
-            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.viewsp;
         }
     }
 

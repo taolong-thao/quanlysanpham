@@ -70,7 +70,7 @@ public class KhachHangController {
                 khachHang.setSoTK(generatedString);
                 khachHangServices.saveKH(khachHang);
                 redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Thêm Khách hàng thành Công");
-                return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+                return SanPhamUtils.REDIRECT + SanPhamUtils.viewkh;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class KhachHangController {
         } else {
             khachHangServices.saveKH(khachHang);
             redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Edit Khách hàng " + khachHang.getTenKh() + " thành Công");
-            return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+            return SanPhamUtils.REDIRECT + SanPhamUtils.viewkh;
         }
 
     }
@@ -95,7 +95,7 @@ public class KhachHangController {
     public String del(@RequestParam("makh") String khachHang, RedirectAttributes redirectAttributes) {
         khachHangServices.delete(khachHang);
         redirectAttributes.addFlashAttribute(SanPhamUtils.SUCCESS, "Xóa Khách hàng " + khachHang + " thành Công");
-        return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+        return SanPhamUtils.REDIRECT + SanPhamUtils.viewkh;
     }
 
     @GetMapping("/UpdateKh/{maKh}")
@@ -151,7 +151,6 @@ public class KhachHangController {
             out.flush();
             out.close();
         }
-
-        return SanPhamUtils.REDIRECT + SanPhamUtils.Manager;
+        return SanPhamUtils.REDIRECT + SanPhamUtils.viewkh;
     }
 }

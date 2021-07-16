@@ -19,6 +19,8 @@ public class SanPhamUtils {
     public static String Manager = "quanly";
     public static Integer idKh = 12;
     public static String hoadon = "hoadon";
+    public static String viewkh = "ViewKH";
+    public static String viewsp = "ViewSP";
 
     public static void WriteFile(HttpServletResponse response, List<SanPham> list, Long total) throws IOException {
 
